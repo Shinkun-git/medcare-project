@@ -51,10 +51,19 @@
     align-items: center;
 }
 
-#additional > div{
+#addFrame {
     gap: 5px;
     display: inherit;
     justify-content: space-between;
     align-items: inherit;
 }
 
+#addFrame > span {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 180%;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: #8C8C8C;
+}

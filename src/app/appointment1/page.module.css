@@ -191,38 +191,26 @@
     align-items: flex-start;
 }
 
-.donateContent aside {
+.donateContent>aside {
     display: flex;
+    flex: 1;
     flex-direction: column;
-}
-
-.asideTop {
-    display: flex;
-    justify-content: space-between;
-}
-
-.asideContent {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    align-items: center;
-}
-.asideContent > div{
     width: 440;
-    height: 304;
-    border-width: 1px;
-    background-color: #FBFBFB;
-    border: Mixed solid #E0E8E0;
+    top: 45px;
+    gap: 10px;
 }
 
-.doctorsContent{
+.doctorsContent {
+    width: 932;
+    flex: 2;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-content: space-between;
     gap: 48px;
 }
-.doctorsContent > div{
+
+.doctorsContent>div {
     display: flex;
     justify-content: space-between;
     align-items: center;

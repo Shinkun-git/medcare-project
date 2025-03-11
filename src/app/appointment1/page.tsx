@@ -3,6 +3,8 @@ import Footer from "../components/layouts/Footer/Footer";
 import Navbar from "../components/layouts/Navbar/Navbar";
 import styles from "./page.module.css"
 import { Montserrat } from "next/font/google"
+import DoctorCard from "../components/layouts/DoctorCard/DoctorCard";
+import FilterSection from "../components/UI/FilterSection/FilterSection";
 const MontserratFont = Montserrat({
     subsets: [],
     weight: "500"
@@ -49,25 +51,15 @@ const appointmentPage = () => {
                     </section>
                     <section className={styles.donateContent}>
                         <aside>
-                            <section>
-                                <div className={styles.asideTop}>
-                                    <span>Filter By:</span>
-                                    <button>Reset</button>
-                                </div>
-                            </section>
-                            <section className={styles.asideContent}>
-                                <div></div>
-                                <div></div>
-                                <div></div>
-                            </section>
+                            <FilterSection title="Rating" radioName="rating" 
+                            options={["Show All", "1 star","2 star","3 star","4 star","5 star"]}/>
+                            <FilterSection title="Experience" radioName="experience" 
+                            options={["15+ years", "10-15 years","5-10 years","3-5 years","1-3 years","0-1 years"]}/>
+                            <FilterSection title="Gender" radioName="gender" 
+                            options={["Show All","Male","Female"]}/>
                         </aside>
-                        <section className={styles.doctorsContent}>
-                            <div>
-                                
-                            </div>
-                            <div>
+                        <section id={styles.doctorsContent}>
 
-                            </div>
                         </section>
                     </section>
                     {/* donate content */}
