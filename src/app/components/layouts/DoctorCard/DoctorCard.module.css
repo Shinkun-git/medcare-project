@@ -1,0 +1,60 @@
+#card {
+    width: 300;
+    height: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 40px 27px;
+    border-radius: 16px;
+    border: 1px solid var(--border-card, #E0E8E0);
+    background-color: #F8FCF9;
+}
+
+#cardDetail {
+    height: 310;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#imageFrame {
+    width: 150;
+    height: 150;
+    border-radius: 99px;
+}
+
+#title {
+    width: 64px;
+}
+
+#name {
+    height: 33px;
+    top: 2px;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 150%;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#additional {
+    height: 42;
+    top: 36px;
+    left: 24.5px;
+    display: flex;
+    gap: 15px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+#additional > div{
+    gap: 5px;
+    display: inherit;
+    justify-content: space-between;
+    align-items: inherit;
+}
+

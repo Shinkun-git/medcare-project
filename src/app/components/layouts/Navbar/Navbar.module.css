@@ -1,0 +1,14 @@
+.container{
+    padding: 36px 60px;
+    /* border-bottom: 1px solid black; */
+    display: flex;
+    justify-content: space-between;
+    /* z-index: 1; */
+    box-sizing: border-box;
+}
+
+.HeadLink{
+    display: flex;
+    gap:48px;
+    align-items: center;
+}

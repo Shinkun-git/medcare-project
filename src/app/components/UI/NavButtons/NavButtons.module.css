@@ -1,0 +1,30 @@
+.container{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.container button{
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 100%;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    text-align: center;
+    /* font-family: "Montserrat", sans-serif !important; */
+    font-style: inherit;
+    font-family: inherit;
+}
+
+.loginButton{
+    border: 1px solid #E0E8E0;
+    color: #0E2515;
+    cursor: pointer;
+}
+
+.registerButton{
+    background-color: #1C4A2A;
+    cursor: pointer;
+    color: white;
+}

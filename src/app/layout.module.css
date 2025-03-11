@@ -1,0 +1,7 @@
+body{
+    margin: 0px;
+    width: 100vw;
+    max-width: 1512;
+    display: flex;
+    flex-flow: column;
+}

@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    gap: 8px;
+}
+
+.logoFrame{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #1C4A2A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo{
+    width: 20px;
+    height: 20px;
+    box-sizing: border-box;
+}
+
+.head{
+    font-size: 28px;
+    line-height: 100%;
+    letter-spacing: -1%;
+    text-align: center;
+    vertical-align: middle;
+    color:#1C4A2A;
+    height: 34px;
+    margin: 0px;
+}
