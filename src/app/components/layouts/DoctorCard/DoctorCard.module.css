@@ -1,4 +1,4 @@
-#card {
+.card {
     width: 300;
     height: 500;
     display: flex;
@@ -8,29 +8,39 @@
     border-radius: 16px;
     border: 1px solid var(--border-card, #E0E8E0);
     background-color: #F8FCF9;
+    box-sizing: border-box;
+    position: relative;
 }
 
-#cardDetail {
+.cardDetail {
     height: 310;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    gap: 27px;
 }
 
-#imageFrame {
+.imageFrame {
     width: 150;
     height: 150;
     border-radius: 99px;
 }
 
-#title {
-    width: 64px;
+.title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    position: relative;
 }
 
-#name {
+.name {
     height: 33px;
+    position: absolute;
     top: 2px;
+    /* left: 16.5; */
     font-family: Montserrat;
     font-weight: 500;
     font-size: 22px;
@@ -40,10 +50,11 @@
     vertical-align: middle;
 }
 
-#additional {
+.additional {
+    position: absolute;
     height: 42;
     top: 36px;
-    left: 24.5px;
+    /* left: 24.5px; */
     display: flex;
     gap: 15px;
     padding: 10px;
@@ -51,14 +62,14 @@
     align-items: center;
 }
 
-#addFrame {
+.addFrame {
     gap: 5px;
     display: inherit;
     justify-content: space-between;
-    align-items: inherit;
+    align-items: center;
 }
 
-#addFrame > span {
+.addFrame>span {
     font-family: Montserrat;
     font-weight: 500;
     font-size: 16px;
@@ -66,4 +77,65 @@
     letter-spacing: -1%;
     vertical-align: middle;
     color: #8C8C8C;
+}
+
+.review {
+    width: 205;
+    height: 42;
+    gap: 15px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reviewFrame {
+    gap: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.reviewFrame>span {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 180%;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: #8C8C8C;
+}
+
+.starFrame {
+    width: 107.5;
+    height: 17.5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 5;
+}
+
+.cardButton {
+    gap: 16px;
+    padding: 20px 48px;
+    border-radius: 10px;
+    border-width: 1px;
+    border: 1px solid var(--border-button, #DEDEDE);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+    position: absolute;
+    left: 15px;
+    top: 398;
+}
+
+.buttonText{
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: #0E2515;
 }

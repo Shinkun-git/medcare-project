@@ -50,16 +50,25 @@ const appointmentPage = () => {
                         </div>
                     </section>
                     <section className={styles.donateContent}>
-                        <aside>
-                            <FilterSection title="Rating" radioName="rating" 
-                            options={["Show All", "1 star","2 star","3 star","4 star","5 star"]}/>
-                            <FilterSection title="Experience" radioName="experience" 
-                            options={["15+ years", "10-15 years","5-10 years","3-5 years","1-3 years","0-1 years"]}/>
-                            <FilterSection title="Gender" radioName="gender" 
-                            options={["Show All","Male","Female"]}/>
-                        </aside>
+                        <div>
+                            <span>Filter By:</span>
+                            <button>Reset</button>
+                            <aside>
+                                <FilterSection title="Rating" radioName="rating"
+                                    options={["Show All", "1 star", "2 star", "3 star", "4 star", "5 star"]} />
+                                <FilterSection title="Experience" radioName="experience"
+                                    options={["15+ years", "10-15 years", "5-10 years", "3-5 years", "1-3 years", "0-1 years"]} />
+                                <FilterSection title="Gender" radioName="gender"
+                                    options={["Show All", "Male", "Female"]} />
+                            </aside>
+                        </div>
                         <section id={styles.doctorsContent}>
-
+                            <DoctorCard />
+                            <DoctorCard />
+                            <DoctorCard />
+                            <DoctorCard />
+                            <DoctorCard />
+                            <DoctorCard />
                         </section>
                     </section>
                     {/* donate content */}

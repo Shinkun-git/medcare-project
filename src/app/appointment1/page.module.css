@@ -189,10 +189,13 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+    position: relative;
+    gap: 20px;
 }
 
 .donateContent>aside {
     display: flex;
+    position: absolute;
     flex: 1;
     flex-direction: column;
     width: 440;
@@ -200,14 +203,14 @@
     gap: 10px;
 }
 
-.doctorsContent {
+#doctorsContent {
     width: 932;
     flex: 2;
     display: flex;
-    flex-direction: row;
+    flex-flow: row wrap;
     justify-content: space-between;
     align-content: space-between;
-    gap: 48px;
+    gap: 16px;
 }
 
 .doctorsContent>div {
@@ -215,4 +218,33 @@
     justify-content: space-between;
     align-items: center;
     gap: 16px;
+}
+
+.donateContent>span {
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: -1%;
+    vertical-align: middle;
+    color: #0E2515;
+    top: 3px;
+    position: absolute;
+}
+
+.donateContent>button {
+    top: 3px;
+    left: 387px;
+    position: absolute;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: -1%;
+    text-align: right;
+    vertical-align: middle;
+    color: #1C4A2A;
+    outline: none;
+    border: none;
+    background: none;
 }
