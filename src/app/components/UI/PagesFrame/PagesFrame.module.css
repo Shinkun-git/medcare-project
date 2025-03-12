@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    gap: 8;
+    align-items: stretch;
+}
+
+.pageButton {
+    padding: 12 16;
+    width: 40;
+    height: 40;
+    border-radius: 6px;
+    gap: 10px;
+    font-family: Inter;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    letter-spacing: 0%;
+    color: #8C8C8C;
+    border: none;
+    background: none;
+}
+
+/* .pageButton>span {
+} */

@@ -5,6 +5,7 @@ import styles from "./page.module.css"
 import { Montserrat } from "next/font/google"
 import DoctorCard from "../components/layouts/DoctorCard/DoctorCard";
 import FilterSection from "../components/UI/FilterSection/FilterSection";
+import PagesFrame from "../components/UI/PagesFrame/PagesFrame";
 const MontserratFont = Montserrat({
     subsets: [],
     weight: "500"
@@ -91,7 +92,7 @@ const appointmentPage = () => {
                                 </span>
                             </section>
 
-                            <section></section>
+                            <PagesFrame pages={["1","2","3","4","...","22","23","24"]} />
 
                             <section className={styles.pageArrow}>
                                 <span>

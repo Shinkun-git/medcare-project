@@ -4,7 +4,7 @@ const FilterSection = ({ title, radioName, options }: { title: string, radioName
 
     return (
         <>
-            <section className={styles.FilterSection} style={{height:`${options.length*45+45}px`}}>
+            <section className={styles.FilterSection} style={{height:`${options.length*47+47}px`}}>
                 <div className={styles.FilterContent}>
                     <span>{title}</span>
                     <div className={styles.ListFrame}>
