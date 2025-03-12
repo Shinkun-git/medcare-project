@@ -4,10 +4,10 @@ const FilterSection = ({ title, radioName, options }: { title: string, radioName
 
     return (
         <>
-            <section id={styles.FilterSection}>
-                <div id={styles.FilterContent}>
+            <section className={styles.FilterSection} style={{height:`${options.length*45+45}px`}}>
+                <div className={styles.FilterContent}>
                     <span>{title}</span>
-                    <div id={styles.ListFrame}>
+                    <div className={styles.ListFrame}>
                         {options.map((option, index) => (
                             <div className={styles.radioButton} key={option+index}>
                                 <input type="radio" name={radioName}
