@@ -21,18 +21,18 @@ const appointmentPage = () => {
                         Find a doctor at your own ease
                     </span>
                     <section className={styles.searchDetails}>
-                        <div className={styles.frame1}>
-                            <div className={styles.frame2}>
-                                <div>
-                                    <div className={styles.vectorFrame}>
-                                        <label htmlFor="search">
+                        <label htmlFor="search">
+                            <div className={styles.frame1} >
+                                <div className={styles.frame2} >
+                                    <div>
+                                        <div className={styles.vectorFrame}>
                                             <Image src="/search-vector.svg" alt="search" width={20} height={20} />
-                                        </label>
+                                        </div>
+                                        <input className={`${MontserratFont.className}`} type="text" name="search" id="search" placeholder="Search doctors" />
                                     </div>
-                                    <input className={`${MontserratFont.className}`} type="text" name="search" id="search" placeholder="Search doctors" />
                                 </div>
                             </div>
-                        </div>
+                        </label>
                         <button className={`${styles.searchBtn} ${MontserratFont.className}`}>
                             <span>
                                 Search
@@ -57,7 +57,7 @@ const appointmentPage = () => {
                                 <span>Filter By:</span>
                                 <button>Reset</button>
                             </div>
-                
+
                             <aside>
                                 <FilterSection title="Rating" radioName="rating"
                                     options={["Show All", "1 star", "2 star", "3 star", "4 star", "5 star"]} />
@@ -92,7 +92,7 @@ const appointmentPage = () => {
                                 </span>
                             </section>
 
-                            <PagesFrame pages={["1","2","3","4","...","22","23","24"]} />
+                            <PagesFrame pages={["1", "2", "3", "4", "...", "22", "23", "24"]} />
 
                             <section className={styles.pageArrow}>
                                 <span>
