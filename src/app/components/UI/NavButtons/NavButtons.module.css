@@ -1,26 +1,27 @@
 .container{
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 1em;
 }
 
 .container button{
-    padding: 12px 32px;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 0.75em 2em;
+    border-radius: 0.5em;
+    font-size: 1em;
     line-height: 100%;
-    letter-spacing: -1%;
+    /* letter-spacing: -1em; */
     vertical-align: middle;
     text-align: center;
-    /* font-family: "Montserrat", sans-serif !important; */
     font-style: inherit;
     font-family: inherit;
 }
 
 .loginButton{
     border: 1px solid #E0E8E0;
+    background-color: white;
     color: #0E2515;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 .registerButton{
@@ -28,4 +29,5 @@
     cursor: pointer;
     color: white;
     border: none;
+    box-sizing: border-box;
 }

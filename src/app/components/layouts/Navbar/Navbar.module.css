@@ -1,14 +1,15 @@
 .container{
-    padding: 36px 5vw;
+    padding: 3vh 5vw;
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
-    min-height: 80px;
+    min-height: 12dvh;
     width: 100%;
 }
 
 .HeadLink{
     display: flex;
-    gap:48px;
+    justify-content: space-between;
     align-items: center;
+    gap: 3.5em;
 }

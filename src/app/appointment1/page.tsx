@@ -6,6 +6,7 @@ import { Montserrat } from "next/font/google"
 import DoctorCard from "../components/layouts/DoctorCard/DoctorCard";
 import FilterSection from "../components/UI/FilterSection/FilterSection";
 import PagesFrame from "../components/UI/PagesFrame/PagesFrame";
+import doctorData from "../../../public/doctorData/doctorData.json"
 const MontserratFont = Montserrat({
     subsets: [],
     weight: "500"
@@ -70,12 +71,10 @@ const appointmentPage = () => {
 
                         {/* doctor's content */}
                         <section id={styles.doctorsContent}>
-                            <DoctorCard />
-                            <DoctorCard />
-                            <DoctorCard />
-                            <DoctorCard />
-                            <DoctorCard />
-                            <DoctorCard />
+                            {doctorData.map((doc)=>(
+                                <DoctorCard key={doc.name} name={doc.name} specialty={doc.specialty} 
+                                experience={doc.experience} ratings={doc.ratings} image={doc.image}/>
+                            ))}
                         </section>
                     </section>
                     {/* donate content */}

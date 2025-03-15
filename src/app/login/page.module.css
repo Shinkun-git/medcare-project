@@ -1,5 +1,5 @@
 .container {
-    height: 911px;
+    min-height: calc(100dvh - 12dvh);
     overflow: hidden;
     position: relative;
     display: flex;
@@ -12,50 +12,44 @@
     position: absolute;
     z-index: -1;
     top: 0px;
-    left: -980px;
+    right: 0px;
 }
 
 .searchField {
-    height: 614px;
-    width: 560px;
+    width: 35em;
     box-sizing: border-box;
-    /* height: 614; */
-    padding: 30px 24px;
+    padding: 2em 1.5em;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: flex-start;
-    gap: 20px;
-    border-radius: 16px;
-    border-width: 1px;
+    gap: 1em;
+    border-radius: 1em;
     background: linear-gradient(153.61deg, rgba(239, 239, 239, 0.6) 0%, rgba(239, 239, 239, 0.08) 100%);
     border: 1px solid #EFEFEF;
-    backdrop-filter: blur(50px);
+    backdrop-filter: blur(20px);
 }
 
 .head {
     font-family: Montserrat;
     font-weight: 500;
-    font-size: 32px;
+    font-size: 2em;
     line-height: 100%;
-    letter-spacing: -1%;
+    /* letter-spacing: -1%; */
     vertical-align: middle;
     color: var(--green-text, #0E2515);
-
 }
 
 .searchDetails {
     width: 100%;
-    gap: 10px;
     display: flex;
-    padding: 9px 0px;
+    padding: 0.5em 0px;
     color: #8C8C8C;
 }
 
 .searchDetails span {
-    font-size: 16px;
+    font-size: 1em;
     line-height: 100%;
-    letter-spacing: -1%;
     vertical-align: middle;
 }
 
@@ -67,78 +61,28 @@
 .searchDetails2 {
     width: 100%;
     color: #8C8C8C;
-    height: 420px;
-    gap: 10px;
+    gap: 1em;
     display: flex;
     flex-flow: column nowrap;
     justify-content: flex-start;
     align-items: flex-start;
-    font-size: 16px;
+    font-size: 1em;
     line-height: 100%;
-    letter-spacing: -1%;
     vertical-align: middle;
 }
 .searchDetails2 > label{
     width: 100%;
 }
-.outerFrame {
-    width: 100%;
-    display: flex;
-    flex-flow: column nowrap;
-    gap: 12;
-    justify-content: space-between;
-    align-items: flex-start;
-    font-size: 16;
-}
-
-.innerFrame {
-    padding: 20 24;
-    display: flex;
-    gap: 206;
-    background-color: #F5F5F5;
-    width: 100%;
-    box-sizing: border-box;
-    border-radius: 10px;
-}
-
-.mainFrame {
-    display: flex;
-    gap: 12;
-}
-
-.mainFrame section {
-    width: 20;
-    height: 20;
-}
-
-.input {
-    font-family: Montserrat;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 100%;
-    letter-spacing: -1%;
-    vertical-align: middle;
-    color: #8C8C8C;
-    background: none;
-    border: none;
-    field-sizing: content;
-    max-width: 480px;
-}
-
-.input:focus {
-    outline: none;
-}
 
 .forgot {
     width: 100%;
-    gap:16px;
+    gap:1em;
     display: flex;
     justify-content: center;
 }
-.forgot a{
-    font-size: 16px;
+.forgot > a{
+    font-size: 1em;
     line-height: 100%;
-    letter-spacing: -1%;
     text-align: center;
     vertical-align: middle;
     color: #0E2515;

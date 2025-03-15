@@ -1,6 +1,7 @@
 import { Montserrat } from "next/font/google"
 import styles from "./LandingMain.module.css"
 import Image from "next/image"
+import Link from "next/link"
 
 const MontserratFont = Montserrat({
     subsets: [],
@@ -27,15 +28,16 @@ export default function LandingMain() {
                 </section>
                 <section className={`${styles.searchField} ${MontserratFont.className}`}>
                     <div className={styles.searchDetails}>
+                        <Link href={"/login"} >
                         <button>Get Started</button>
+                        </Link>
                     </div>
                 </section>
             </section>
             <section className={styles.section2}>
                 <div className={styles.heroImg}>
-                    <Image src="/landingImage.jpg" alt="doctor examining patient"
-                        fill
-                        style={{ objectFit: "cover" }} />
+                    <Image src="/landingImage-cropped.jpg" alt="doctor examining patient"
+                        fill />
                 </div>
             </section>
         </main>
