@@ -1,0 +1,136 @@
+.container {
+    width: 654.8722534179688;
+    height: 821.5791015625;
+    background-color: #FFFFFF;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 1;
+    padding: 37 27 9;
+}
+
+.scheduleAppointment {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 25;
+}
+
+.scheduleHead {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 127;
+}
+
+.scheduleHead>span {
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #221E20;
+}
+
+.scheduleHead>button {
+    padding: 14 36;
+    background-color: #1C4A2A;
+    text-align: center;
+    vertical-align: middle;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0em;
+    color: #FFFFFF;
+    border-radius: 9px;
+    border: none;
+}
+
+.mode {
+    display: flex;
+    justify-content: center;
+    gap: 0px;
+    align-items: center;
+
+}
+
+.videoBtn {
+    flex: 1;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #FFFFFFE5;
+    background-color: #1C4A2A;
+    border: none;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    padding: 1em 2em;
+}
+
+.visitBtn {
+    padding: 1em 2em;
+    flex: 1;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    background-color: #FFFFFF;
+    border: 1px solid #F4D7D0;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+.locationDrop {
+    border: 1px solid #D3D4DB;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000000;
+    padding: 1em;
+    border-radius: 0.5em;
+}
+
+.locationDrop>select {
+    width: 100%;
+    border: none;
+}
+
+.month {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.month>span {
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #313131;
+}
+
+.nextBtn {
+    width: 100%;
+    font-family: Montserrat;
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #FFFFFF;
+    background-color: #1C4A2A;
+    border: none;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 0.5em;
+    padding: 1em 0em;
+}

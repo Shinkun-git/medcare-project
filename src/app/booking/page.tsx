@@ -1,3 +1,4 @@
+import BookingBox from "../components/layouts/BookingBox/BookingBox";
 import Footer from "../components/layouts/Footer/Footer";
 import Navbar from "../components/layouts/Navbar/Navbar"
 import styles from "./page.module.css"
@@ -22,9 +23,10 @@ const BookingPage = () => {
                 </section>
                 <section className={styles.section2}>
                     <div id={styles.bgImgWrapper}>
-                    <Image src={"/bookBG.png"} alt={"doctor examining patient"} 
-                    width={1319.16} height={911} style={{objectFit:"cover"}}/>
+                        <Image src={"/bookBG.png"} alt={"doctor examining patient"}
+                            width={1319.16} height={911} style={{ objectFit: "cover" }} />
                     </div>
+                    <BookingBox/>
                 </section>
             </main>
             <Footer />
