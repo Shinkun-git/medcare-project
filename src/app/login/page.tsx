@@ -15,8 +15,8 @@ const page = () => {
             <Navbar />
             <main className={styles.container}>
                 <Image src="/sign-up-bg.png" alt="a doctor's desk"
-                    width={2493.21} height={911}
-                    style={{ objectFit: "cover", }}
+                    width={2493.2138671875} height={911}
+                    style={{ objectFit: "cover" }}
                     className={styles.bgImage} />
                 <section className={`${styles.searchField} ${MontserratFont.className}`}>
                     <span className={styles.head}>

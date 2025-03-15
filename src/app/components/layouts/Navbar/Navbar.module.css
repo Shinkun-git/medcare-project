@@ -1,10 +1,10 @@
 .container{
-    padding: 36px 60px;
-    /* border-bottom: 1px solid black; */
+    padding: 36px 5vw;
     display: flex;
     justify-content: space-between;
-    /* z-index: 1; */
     box-sizing: border-box;
+    min-height: 80px;
+    width: 100%;
 }
 
 .HeadLink{

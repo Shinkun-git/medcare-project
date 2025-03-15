@@ -1,8 +1,9 @@
 html,body{
-    margin: 0px;
-    width: 100vw;
-    max-width: 1512;
+    margin: 0;
+    width: 100%;
+    max-width: 1512px;
+    min-height: 100dvh;
     display: flex;
     flex-flow: column;
-    overflow-x: hidden;
+    overflow: hidden;
 }

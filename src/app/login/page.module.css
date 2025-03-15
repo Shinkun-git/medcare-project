@@ -11,12 +11,14 @@
 .bgImage {
     position: absolute;
     z-index: -1;
-    top: -5px;
-    left: -970px;
+    top: 0px;
+    left: -980px;
 }
 
 .searchField {
-    width: 560;
+    height: 614px;
+    width: 560px;
+    box-sizing: border-box;
     /* height: 614; */
     padding: 30px 24px;
     display: flex;
