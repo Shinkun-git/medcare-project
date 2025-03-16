@@ -26,8 +26,8 @@
 
 .searchField span {
     color: #0E2515;
-    font-size: 32px;
+    font-size: 2em;
     line-height: 100%;
-    letter-spacing: -1%;
+    /* letter-spacing: -1%; */
     vertical-align: middle;
 }

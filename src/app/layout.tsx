@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import styles from "./layout.module.css"
 import type { Viewport } from 'next'
- 
+
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -24,5 +24,5 @@ export default function RootLayout({
         {children}
       </body>
     </html>
-  ); 
+  );
 }

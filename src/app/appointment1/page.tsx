@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image";
 import Footer from "../components/layouts/Footer/Footer";
 import Navbar from "../components/layouts/Navbar/Navbar";
@@ -8,11 +9,19 @@ import FilterSection from "../components/UI/FilterSection/FilterSection";
 import PagesFrame from "../components/UI/PagesFrame/PagesFrame";
 import doctorData from "../../../public/doctorData/doctorData.json"
 import SearchDoctor from "../components/UI/SearchDoctor/SearchDoctor";
+import { useEffect } from "react";
 const MontserratFont = Montserrat({
     subsets: [],
     weight: "500"
 })
 const appointmentPage = () => {
+    useEffect(() => {
+        document.body.style.overflow = "auto";
+
+        return () => {
+            document.body.style.overflow = "hidden";
+        };
+    }, []);
     return (
         <>
             <Navbar />

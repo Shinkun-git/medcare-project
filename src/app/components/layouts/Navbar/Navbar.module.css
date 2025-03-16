@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     box-sizing: border-box;
-    min-height: 12dvh;
+    height: 12dvh;
     width: 100%;
 }
 
