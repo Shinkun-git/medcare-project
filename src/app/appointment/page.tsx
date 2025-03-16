@@ -11,14 +11,14 @@ const appointmentPage = () => {
     return (
         <>
             <Navbar />
-            {/* <main className={styles.container}>
+            <main className={styles.container}>
                 <section className={`${styles.searchField} ${MontserratFont.className}`}>
                     <span>
                         Find a doctor at your own ease
                     </span>
                     <SearchDoctor/>
                 </section>
-            </main> */}
+            </main>
             <Footer />
         </>
     );

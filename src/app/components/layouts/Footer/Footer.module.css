@@ -1,6 +1,8 @@
 .footer {
     background: var(--white, #FFFFFF);
-    min-height: 4dvh;
+    height: 4dvh;
+    min-height: 5em;
+    width: 100%;
 }
 
 .footSection {
