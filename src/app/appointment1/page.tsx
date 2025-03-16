@@ -7,6 +7,7 @@ import DoctorCard from "../components/layouts/DoctorCard/DoctorCard";
 import FilterSection from "../components/UI/FilterSection/FilterSection";
 import PagesFrame from "../components/UI/PagesFrame/PagesFrame";
 import doctorData from "../../../public/doctorData/doctorData.json"
+import SearchDoctor from "../components/UI/SearchDoctor/SearchDoctor";
 const MontserratFont = Montserrat({
     subsets: [],
     weight: "500"
@@ -21,25 +22,7 @@ const appointmentPage = () => {
                     <span>
                         Find a doctor at your own ease
                     </span>
-                    <section className={styles.searchDetails}>
-                        <label htmlFor="search">
-                            <div className={styles.frame1} >
-                                <div className={styles.frame2} >
-                                    <div>
-                                        <div className={styles.vectorFrame}>
-                                            <Image src="/search-vector.svg" alt="search" width={20} height={20} />
-                                        </div>
-                                        <input className={`${MontserratFont.className}`} type="text" name="search" id="search" placeholder="Search doctors" />
-                                    </div>
-                                </div>
-                            </div>
-                        </label>
-                        <button className={`${styles.searchBtn} ${MontserratFont.className}`}>
-                            <span>
-                                Search
-                            </span>
-                        </button>
-                    </section>
+                    <SearchDoctor/>
                 </section>
 
                 {/* donate section */}
