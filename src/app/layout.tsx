@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import styles from "./layout.module.css"
 import type { Viewport } from 'next'
+import Navbar from "./components/layouts/Navbar/Navbar";
+import Footer from "./components/layouts/Footer/Footer";
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -21,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={styles.body}>
+        <Navbar />
         {children}
       </body>
     </html>

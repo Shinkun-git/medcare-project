@@ -13,7 +13,6 @@ const MontserratFont = Montserrat({
 const page = () => {
     return (
         <>
-            <Navbar />
             <main className={styles.container}>
                 <Image src="/sign-up-bg.png" alt="a doctor's desk"
                     width={2493.2138671875} height={911}

@@ -1,13 +1,13 @@
 .container {
-    width: 654.8722534179688;
-    height: 821.5791015625;
+    height: 75%;
+    width: 85%;
     background-color: #FFFFFF;
     display: flex;
     flex-flow: column;
     justify-content: space-evenly;
     align-items: center;
     z-index: 1;
-    padding: 37 27 9;
+    padding: 2.3em 1.69em 0.5em;
 }
 
 .scheduleAppointment {

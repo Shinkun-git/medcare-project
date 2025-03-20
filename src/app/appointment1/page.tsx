@@ -24,7 +24,6 @@ const appointmentPage = () => {
     }, []);
     return (
         <>
-            <Navbar />
             <main className={styles.container}>
                 {/* search field */}
                 <section className={`${styles.searchField} ${MontserratFont.className}`}>
