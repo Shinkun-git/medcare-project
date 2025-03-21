@@ -1,17 +1,22 @@
-#html{
+.html{
     margin: 0px;
-    width: 100vw;
-    max-width: 1512;
+    width: 100%;
+    padding: 0;
     display: flex;
     flex-flow: column;
+    height: fit-content;
     overflow-x: hidden;
+    justify-content: space-between;
 }
 
-#body{
+.body{
     margin: 0px;
-    width: 100vw;
-    max-width: 1512;
+    width: 100%;
+    padding: 0;
     display: flex;
     flex-flow: column;
+    justify-content: space-between;
     overflow: hidden;
+    height: fit-content;
+    min-height: 100dvh;
 }
