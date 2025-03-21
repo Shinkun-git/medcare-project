@@ -1,12 +1,13 @@
 .container {
     width: 100%;
+    min-height: 300px;
 }
 
 .searchField {
     box-sizing: border-box;
     width: 100%;
-    gap: 40px;
-    padding: 48px 24px;
+    gap: 2.5em;
+    padding: 3em 1.5em;
     border: 1px solid #FFFFFF;
     border-radius: 16px;
     display: flex;
@@ -20,91 +21,16 @@
 
 .searchField span {
     color: #0E2515;
-    font-size: 32px;
+    font-size: 2em;
     line-height: 100%;
-    letter-spacing: -1%;
+    /* letter-spacing: -1%; */
     vertical-align: middle;
-}
-
-.searchDetails {
-    width: 1316;
-    display: flex;
-    /* justify-content: space-between; */
-}
-
-.frame1 {
-    display: flex;
-    gap: 16px;
-    width: 1165;
-}
-
-.frame2 {
-    width: inherit;
-    display: flex;
-    gap: 40px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    border-width: 1px;
-    padding: 24px;
-    background-color: #FFFFFF;
-    border: 1px solid #374957
-}
-
-.frame2>div {
-    display: flex;
-    justify-content: space-between;
-    gap: 12;
-}
-
-.vectorFrame {
-    width: 20;
-    height: 20;
-}
-
-.vectorFrame img {
-    top: -0.03px;
-    left: -0.03px;
-    color: #374957;
-}
-
-.frame2 input {
-    font-size: 16px;
-    line-height: 100%;
-    letter-spacing: -1%;
-    vertical-align: middle;
-    color: #AFAFAF;
-    background: none;
-    border: none;
-    field-sizing: content;
-    max-width: 1100px;
-}
-
-.frame2 input:focus {
-    outline: none;
-}
-
-.searchBtn {
-    padding: 24 48;
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background-color: #1C4A2A;
-    cursor: pointer;
-}
-
-.searchBtn span {
-    display: flex;
-    gap: 12;
-    font-size: 16px;
-    line-height: 100%;
-    letter-spacing: -1%;
-    vertical-align: middle;
-    color: #FFFFFF;
 }
 
 .donateSection {
-    padding: 120 60 44;
+    padding: 7.5em 3.75em 2.5em;
     display: flex;
-    gap: 48;
+    gap: 3em;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
@@ -113,24 +39,24 @@
 .donateTitle {
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 1em;
     justify-content: space-between;
     align-items: center;
     /* width: 50%; */
     vertical-align: middle;
-    letter-spacing: -1%;
+    /* letter-spacing: -1%; */
     font-family: Montserrat;
     font-weight: 500;
 }
 
 .donateTitle span {
-    font-size: 60px;
+    font-size: 3.8em;
     line-height: 150%;
     color: #0E2515;
 }
 
 .donateTitle div {
-    font-size: 18px;
+    font-size: 1.125em;
     line-height: 180%;
     text-align: center;
     color: #8C8C8C;
@@ -139,26 +65,26 @@
 .donateFooter {
     display: flex;
     justify-content: center;
-    padding: 27px 0px;
-    gap: 10px;
+    padding: 1.7em 0px;
+    gap: 0.5em;
 }
 
 .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 0.5em;
     border-radius: 6px;
-    padding: 8px;
+    padding: 0.5em;
 }
 
 .pageArrow {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 9px;
+    gap: 0.5em;
     border-radius: 6px;
-    padding: 12px;
+    padding: 0.75em;
 }
 
 .pageArrow div {
@@ -176,29 +102,29 @@
 .pageArrow span {
     font-family: Montserrat;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 16px;
+    font-size: 1em;
+    line-height: 100%;
     letter-spacing: 0%;
     color: #8C8C8C;
 }
 
 .donateContent {
-    height: 1048;
+    /* height: 1048; */
     width: 100%;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     position: relative;
-    gap: 20px;
+    gap: 1.3em;
 }
 
 #donateAside {
+    flex: 0.85;
     display: flex;
     flex-flow: column;
-    gap: 20px;
+    gap: 1em;
     align-items: stretch;
-    width: 440;
     position: relative;
 }
 
@@ -212,9 +138,9 @@
 #donateAsideTop>span {
     font-family: Montserrat;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 1.125em;
     line-height: 100%;
-    letter-spacing: -1%;
+    /* letter-spacing: -1%; */
     vertical-align: middle;
     color: #0E2515;
 }
@@ -222,14 +148,15 @@
 #donateAsideTop>button {
     font-family: Montserrat;
     font-weight: 700;
-    font-size: 18px;
+    font-size: 1.125em;
     line-height: 100%;
-    letter-spacing: -1%;
+    /* letter-spacing: -1%; */
     text-align: right;
     vertical-align: middle;
     color: #1C4A2A;
     border: none;
     background:none;
+    padding: 0;
 }
 
 #donateAside>aside {
@@ -238,27 +165,19 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    gap: 10px;
+    gap: 0.5em;
 }
 
 #doctorsContent {
-    width: 932;
+    flex:2;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
     align-content: space-between;
-    gap: 16px;
+    gap: 2.5em 0.5em;
 }
 
-.doctorsContent>div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-}
-
-
-.donateContent>button {
+/* .donateContent>button {
     top: 3px;
     left: 387px;
     position: absolute;
@@ -272,5 +191,5 @@
     color: #1C4A2A;
     outline: none;
     border: none;
-    background: none;
-}
+    background-color: red;
+} */

@@ -1,6 +1,6 @@
 .FilterSection {
-    width: 440;
-    height: 304;
+    width: 100%;
+    /* height: 304; */
     border-width: 1px;
     background-color: #FBFBFB;
     border: Mixed solid #E0E8E0;

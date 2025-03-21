@@ -3,10 +3,8 @@ const PagesFrame = ({pages}:{pages:string[]}) => {
     return ( 
         <section className={styles.container}>
             {pages.map((page)=>(
-                <button id={page.toString()} className={styles.pageButton}>
-                    {/* <span id={`span${page}`}> */}
+                <button key={page} className={styles.pageButton}>
                         {page}
-                        {/* </span> */}
                 </button>
             ))}
         </section>
