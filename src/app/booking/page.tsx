@@ -1,7 +1,8 @@
 
 import BookingBox from "../components/layouts/BookingBox/BookingBox";
 import Footer from "../components/layouts/Footer/Footer";
-import styles from "./page.module.css"
+import styles from "./page.module.css";
+import Image from "next/image";
 
 const BookingPage = () => {
     return (
@@ -21,13 +22,11 @@ const BookingPage = () => {
                     </article>
                 </section>
                 <section className={styles.section2}>
-                    {/* <div id={styles.bgImgWrapper}>
-                        <Image src={"/bookBG-crop.png"} alt={"doctor examining patient"}
-                            fill style={{ objectFit: "cover" }} />
-                    </div> */}
-                    {/* <div className={styles.bookBox}> */}
+                    <Image src={"/bookBG-crop.png"} alt={"doctor examining patient"}
+                        fill style={{ objectFit: "cover" }} />
+                    <div className={styles.bookBox}>
                         <BookingBox />
-                    {/* </div> */}
+                    </div>
                 </section>
             </main>
             <Footer />
