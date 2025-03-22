@@ -1,17 +1,9 @@
-"use client"
-import { useEffect } from "react";
+
 import BookingBox from "../components/layouts/BookingBox/BookingBox";
 import Footer from "../components/layouts/Footer/Footer";
 import styles from "./page.module.css"
-import Image from "next/image";
+
 const BookingPage = () => {
-    useEffect(() => {
-            document.body.style.overflow = "auto";
-    
-            return () => {
-                document.body.style.overflow = "hidden";
-            };
-        }, []);
     return (
         <>
             <main id={styles.container}>
