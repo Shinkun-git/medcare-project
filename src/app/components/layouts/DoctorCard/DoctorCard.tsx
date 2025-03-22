@@ -1,9 +1,9 @@
 import styles from "./DoctorCard.module.css"
 import Image from "next/image";
-const DoctorCard = ({ name, specialty, experience, ratings, image }:
-    { name: string, specialty: string, experience: string, ratings: number, image: string }
+const DoctorCard = ({ name, specialty, experience, rating, image }:
+    { name: string, specialty: string, experience: number, rating: number, image: string }
 ) => {
-    const totalStars = ratings;
+    const totalStars = rating;
     return (
         <article className={styles.card}>
             <section className={styles.cardDetail}>
@@ -24,7 +24,7 @@ const DoctorCard = ({ name, specialty, experience, ratings, image }:
                         </div>
                         <div className={styles.addFrame}>
                             <Image src={"/hourglass.png"} alt={"hour glass"} width={17.5} height={15.01} />
-                            <span>{experience}</span>
+                            <span>{experience} Years</span>
                         </div>
                     </div>
                 </div>
@@ -35,12 +35,12 @@ const DoctorCard = ({ name, specialty, experience, ratings, image }:
                             Ratings:
                         </span>
                         <div className={styles.starFrame}>
-                        {Array.from({ length: ratings }).map((_, index) => (
+                        {Array.from({ length: rating }).map((_, index) => (
                                 <Image key={`filled-${index}`} src={"/fillStar.png"} alt="filled star" width={17.5} height={17.5} />
                             ))}
 
                             {/* Render Empty Stars */}
-                            {Array.from({ length: totalStars - ratings }).map((_, index) => (
+                            {Array.from({ length: 5 - rating }).map((_, index) => (
                                 <Image key={`empty-${index}`} src={"/hollowStar.png"} alt="empty star" width={17.5} height={17.5} />
                             ))}
                         </div>

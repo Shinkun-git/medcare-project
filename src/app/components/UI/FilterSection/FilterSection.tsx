@@ -11,7 +11,7 @@ const FilterSection = ({ title, radioName, options }: { title: string, radioName
                         {options.map((option, index) => (
                             <div className={styles.radioButton} key={option+index}>
                                 <input type="radio" name={radioName}
-                                    id={`${radioName}${index}`} value={option} defaultChecked={index===0}/>
+                                    id={`${radioName}${index}`} value={option} defaultChecked={(index===0)&&(title !== 'Experience')?true:false}/>
                                 <label htmlFor={`${radioName}${index}`}>{option}</label>
                             </div>
                         ))}
