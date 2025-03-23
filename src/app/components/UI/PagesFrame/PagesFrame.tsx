@@ -1,4 +1,4 @@
-import Link from "next/link";
+
 import styles from "./PagesFrame.module.css";
 import Image from "next/image";
 
@@ -30,7 +30,7 @@ const PagesFrame: React.FC<PagesFrameProps> = ({ pages, currentPage,totalPages, 
             {/* dynamic page buttons */}
             <section className={styles.container}>
                 {pages.map((page) => (
-                    console.log(`currentPage: ${currentPage}, totalPages: ${totalPages}`),
+                    // console.log(`currentPage: ${currentPage}, totalPages: ${totalPages}`),
                     <button key={page} className={styles.pageButton}
                         onClick={() => setCurrentPage(Number(page))}>
                         {page}

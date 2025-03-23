@@ -31,24 +31,44 @@ const appointmentPage = () => {
     const [totalDoctors, setTotalDoctors] = useState(0); // Total number of doctors
     const [totalPages, setTotalPages] = useState(1); // Total pages based on filtered results
     const [currentPage, setCurrentPage] = useState(1);
-    const [filters, setFilters] = useState({ rating: "", experience: "", gender: "" }); // Store selected filters
+    const [filters, setFilters] = useState({ rating: "Show All", experience: null, gender: "Show All" }); // Store selected filters
 
-
+    const updateFilter = (key: string, value: string) => {
+        let newValue: string | null = value;
+    
+        if (key === "experience" && value === "Show All") {
+            newValue = null;
+        }
+        
+        setFilters((prevFilters) => ({
+            ...prevFilters,
+            [key]: newValue,
+        }));
+    
+        setCurrentPage(1);
+    };
+    
     useEffect(() => {
         const fetchFilteredDoctors = async () => {
             const queryParams = new URLSearchParams({
                 page: currentPage.toString(),
-                limit: "6", // Show 6 doctors per page
-                ...filters, // Include filters dynamically
-            }).toString();
+                limit: "6",
+            });
+
+            // Only add filters if they are valid
+            if (filters.rating !== null) queryParams.append("rating", String(filters.rating));
+            if (filters.experience !== null) queryParams.append("experience", String(filters.experience));
+            if (filters.gender !== null) queryParams.append("gender", filters.gender);
 
             const response = await fetch(`http://localhost:3003/api/v1/doctors?${queryParams}`);
             const parsedRes = await response.json();
+
             console.log("API Response:", parsedRes.data);
             setDoctors(parsedRes.data.data);
             setTotalDoctors(parsedRes.data.total);
             setTotalPages(parsedRes.data.pages);
         };
+
         fetchFilteredDoctors();
     }, [currentPage, filters]);
 
@@ -77,16 +97,38 @@ const appointmentPage = () => {
                         <div id={styles.donateAside}>
                             <div id={styles.donateAsideTop}>
                                 <span>Filter By:</span>
-                                <button>Reset</button>
+                                <button onClick={() => {
+                                    setFilters({ rating: "Show All", experience: null, gender: "Show All" });
+                                    setCurrentPage(1);
+                                }}>Reset</button>
                             </div>
 
                             <aside>
-                                <FilterSection title="Rating" radioName="rating"
-                                    options={["Show All", "1 star", "2 star", "3 star", "4 star", "5 star"]} />
-                                <FilterSection title="Experience" radioName="experience"
-                                    options={["15+ years", "10-15 years", "5-10 years", "3-5 years", "1-3 years", "0-1 years"]} />
-                                <FilterSection title="Gender" radioName="gender"
-                                    options={["Show All", "Male", "Female"]} />
+                                <FilterSection
+                                    title="Rating"
+                                    radioName="rating"
+                                    options={["Show All", "1 star", "2 star", "3 star", "4 star", "5 star"]}
+                                    selectedValue={filters.rating !== null ? `${filters.rating}` : "Show All"}
+                                    onFilterChange={(value) => updateFilter("rating", value)}
+                                />
+
+                                <FilterSection
+                                    title="Experience"
+                                    radioName="experience"
+                                    options={["15+ years", "10-15 years", "5-10 years", "3-5 years", "1-3 years", "0-1 years"]}
+                                    selectedValue={filters.experience || "Show All"}
+                                    onFilterChange={(value) => updateFilter("experience", value)}
+                                />
+
+
+                                <FilterSection
+                                    title="Gender"
+                                    radioName="gender"
+                                    options={["Show All", "Male", "Female"]}
+                                    selectedValue={filters.gender !== null ? filters.gender : "Show All"}
+                                    onFilterChange={(value) => updateFilter("gender", value)}
+                                />
+
                             </aside>
                         </div>
 
