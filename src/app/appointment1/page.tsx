@@ -16,7 +16,7 @@ const MontserratFont = Montserrat({
 })
 type doctor = {
     doc_id: number,
-    name : string,
+    name: string,
     gender: string,
     specification: string,
     experience: number,
@@ -26,23 +26,32 @@ type doctor = {
     degree: string
 }
 const appointmentPage = () => {
-    const fetchAllDoctors = async()=>{
-        const response = await fetch(`http://localhost:3003/api/v1/doctors`);
-        const parsedRes = await response.json();
-        return parsedRes.data;
-    }
+
     const [doctors, setDoctors] = useState<doctor[]>([]);
-    const setAsyncDoc = async()=>{
-        const doctorsArray = await fetchAllDoctors();
-        setDoctors(doctorsArray);
-    }
-    useEffect(()=>{
-        setAsyncDoc();
-    },[]);
+    const [totalDoctors, setTotalDoctors] = useState(0); // Total number of doctors
+    const [totalPages, setTotalPages] = useState(1); // Total pages based on filtered results
+    const [currentPage, setCurrentPage] = useState(1);
+    const [filters, setFilters] = useState({ rating: "", experience: "", gender: "" }); // Store selected filters
 
-    const handleReset = ()=>{
 
-    }
+    useEffect(() => {
+        const fetchFilteredDoctors = async () => {
+            const queryParams = new URLSearchParams({
+                page: currentPage.toString(),
+                limit: "6", // Show 6 doctors per page
+                ...filters, // Include filters dynamically
+            }).toString();
+
+            const response = await fetch(`http://localhost:3003/api/v1/doctors?${queryParams}`);
+            const parsedRes = await response.json();
+            console.log("API Response:", parsedRes.data);
+            setDoctors(parsedRes.data.data);
+            setTotalDoctors(parsedRes.data.total);
+            setTotalPages(parsedRes.data.pages);
+        };
+        fetchFilteredDoctors();
+    }, [currentPage, filters]);
+
     return (
         <>
             <main className={styles.container}>
@@ -51,14 +60,14 @@ const appointmentPage = () => {
                     <span>
                         Find a doctor at your own ease
                     </span>
-                    <SearchDoctor/>
+                    <SearchDoctor />
                 </section>
 
                 {/* donate section */}
                 <section className={styles.donateSection}>
                     {/* donate title */}
                     <section className={styles.donateTitle}>
-                        <span>6 doctors available</span>
+                        <span>{totalDoctors} doctors available</span>
                         <div>
                             Book appointments with minimum wait-time & verified doctor details
                         </div>
@@ -68,7 +77,7 @@ const appointmentPage = () => {
                         <div id={styles.donateAside}>
                             <div id={styles.donateAsideTop}>
                                 <span>Filter By:</span>
-                                <button onClick={handleReset}>Reset</button>
+                                <button>Reset</button>
                             </div>
 
                             <aside>
@@ -83,37 +92,26 @@ const appointmentPage = () => {
 
                         {/* doctor's content */}
                         <section id={styles.doctorsContent}>
-                            {doctors.map((doc)=>(
-                                <DoctorCard key={doc.name} name={doc.name} specialty={doc.specification} 
-                                experience={doc.experience} rating={doc.rating} image={imageUrl}/>
-                            ))}
+                            {Array.isArray(doctors) && doctors.length > 0 ? (
+                                doctors.map((doc) => (
+                                    <DoctorCard key={doc.doc_id} name={doc.name} specialty={doc.specification}
+                                        experience={doc.experience} rating={doc.rating} image={imageUrl} />
+                                ))
+                            ) : (
+                                <p>No doctors found</p>
+                            )}
                         </section>
                     </section>
                     {/* donate content */}
 
                     {/* donate footer */}
                     <section className={styles.donateFooter}>
-                        <div className={styles.pagination}>
-                            <section className={styles.pageArrow}>
-                                <div>
-                                    <Image src={"/left-arrow.svg"} alt={"previous page"} width={8} height={16} />
-                                </div>
-                                <span>
-                                    Prev
-                                </span>
-                            </section>
 
-                            <PagesFrame pages={["1", "2", "3", "4", "...", "22", "23", "24"]} />
+                        <PagesFrame pages={Array.from({ length: totalPages }, (_, index) => (index + 1).toString())}
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            setCurrentPage={setCurrentPage} />
 
-                            <section className={styles.pageArrow}>
-                                <span>
-                                    Next
-                                </span>
-                                <div>
-                                    <Image src={"/right-arrow.svg"} alt={"next page"} width={8} height={16} />
-                                </div>
-                            </section>
-                        </div>
                     </section>
                 </section>
             </main>
