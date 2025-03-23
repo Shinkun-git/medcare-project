@@ -33,22 +33,54 @@ const appointmentPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [filters, setFilters] = useState({ rating: "Show All", experience: null, gender: "Show All" }); // Store selected filters
 
+    const [searchValue, setSearchValue] = useState("");
+    const onSearch = (searchValue: string) => {
+        setSearchValue(searchValue);
+        setCurrentPage(1);
+    };
+
+    useEffect(() => {
+        if(searchValue.trim() === "") return;
+        const fetchSearchedDoctors = async () => {
+            const queryParams = new URLSearchParams({
+                page: currentPage.toString(),
+                limit: "6",
+                searchQuery: searchValue,
+            });
+
+            try {
+                const response = await fetch(`http://localhost:3003/api/v1/doctors/searchDoctor?${queryParams}`);
+                const parsedRes = await response.json();
+    
+                console.log("Search API Response:", parsedRes.data);
+                setDoctors(parsedRes.data.data);
+                setTotalDoctors(parsedRes.data.total);
+                setTotalPages(parsedRes.data.pages);
+            } catch (error) {
+                console.error("Error fetching searched doctors:", error);
+            }
+        };
+        fetchSearchedDoctors();
+    }, [searchValue,currentPage]);
+    
+
     const updateFilter = (key: string, value: string) => {
         let newValue: string | null = value;
-    
+
         if (key === "experience" && value === "Show All") {
             newValue = null;
         }
-        
+
         setFilters((prevFilters) => ({
             ...prevFilters,
             [key]: newValue,
         }));
-    
+
         setCurrentPage(1);
     };
-    
+
     useEffect(() => {
+        if (searchValue.trim() !== "") return;
         const fetchFilteredDoctors = async () => {
             const queryParams = new URLSearchParams({
                 page: currentPage.toString(),
@@ -80,7 +112,7 @@ const appointmentPage = () => {
                     <span>
                         Find a doctor at your own ease
                     </span>
-                    <SearchDoctor />
+                    <SearchDoctor onSearch={onSearch} />
                 </section>
 
                 {/* donate section */}
