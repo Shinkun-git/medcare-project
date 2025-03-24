@@ -36,33 +36,7 @@ const appointmentPage = () => {
     const [searchValue, setSearchValue] = useState("");
     const onSearch = (searchValue: string) => {
         setSearchValue(searchValue);
-        setCurrentPage(1);
     };
-
-    useEffect(() => {
-        if(searchValue.trim() === "") return;
-        const fetchSearchedDoctors = async () => {
-            const queryParams = new URLSearchParams({
-                page: currentPage.toString(),
-                limit: "6",
-                searchQuery: searchValue,
-            });
-
-            try {
-                const response = await fetch(`http://localhost:3003/api/v1/doctors/searchDoctor?${queryParams}`);
-                const parsedRes = await response.json();
-    
-                console.log("Search API Response:", parsedRes.data);
-                setDoctors(parsedRes.data.data);
-                setTotalDoctors(parsedRes.data.total);
-                setTotalPages(parsedRes.data.pages);
-            } catch (error) {
-                console.error("Error fetching searched doctors:", error);
-            }
-        };
-        fetchSearchedDoctors();
-    }, [searchValue,currentPage]);
-    
 
     const updateFilter = (key: string, value: string) => {
         let newValue: string | null = value;
@@ -79,30 +53,64 @@ const appointmentPage = () => {
         setCurrentPage(1);
     };
 
-    useEffect(() => {
-        if (searchValue.trim() !== "") return;
-        const fetchFilteredDoctors = async () => {
-            const queryParams = new URLSearchParams({
-                page: currentPage.toString(),
-                limit: "6",
-            });
+    const fetchFilteredDoctors = async () => {
+        const queryParams = new URLSearchParams({
+            page: currentPage.toString(),
+            limit: "6",
+        });
 
-            // Only add filters if they are valid
-            if (filters.rating !== null) queryParams.append("rating", String(filters.rating));
-            if (filters.experience !== null) queryParams.append("experience", String(filters.experience));
-            if (filters.gender !== null) queryParams.append("gender", filters.gender);
+        // Only add filters if they are valid
+        if (filters.rating !== null) queryParams.append("rating", String(filters.rating));
+        if (filters.experience !== null) queryParams.append("experience", String(filters.experience));
+        if (filters.gender !== null) queryParams.append("gender", filters.gender);
 
-            const response = await fetch(`http://localhost:3003/api/v1/doctors?${queryParams}`);
+        const response = await fetch(`http://localhost:3003/api/v1/doctors?${queryParams}`);
+        const parsedRes = await response.json();
+
+        console.log("API Response:", parsedRes.data);
+        setDoctors(parsedRes.data.data);
+        setTotalDoctors(parsedRes.data.total);
+        setTotalPages(parsedRes.data.pages);
+    };
+    const fetchSearchedDoctors = async () => {
+        const queryParams = new URLSearchParams({
+            page: currentPage.toString(),
+            limit: "6",
+            searchQuery: searchValue,
+        });
+
+        try {
+            const response = await fetch(`http://localhost:3003/api/v1/doctors/searchDoctor?${queryParams}`);
             const parsedRes = await response.json();
 
-            console.log("API Response:", parsedRes.data);
+            console.log("Search API Response:", parsedRes.data);
             setDoctors(parsedRes.data.data);
             setTotalDoctors(parsedRes.data.total);
             setTotalPages(parsedRes.data.pages);
-        };
+        } catch (error) {
+            console.error("Error fetching searched doctors:", error);
+        }
+    };
 
-        fetchFilteredDoctors();
-    }, [currentPage, filters]);
+    useEffect(() => {
+        console.log("Current Page Changed:", currentPage);
+    
+        if (searchValue.trim() === "") {
+            console.log("Filtered Fetch Running...");
+            fetchFilteredDoctors();
+        } else {
+            console.log("Search Fetch Running...");
+            fetchSearchedDoctors();
+        }
+    }, [currentPage, filters,searchValue]); // ✅ Runs ONLY when currentPage or filters change
+    
+    useEffect(() => {
+        if (searchValue.trim() !== "") {
+            console.log("Search Triggered, Reset Page to 1");
+            setCurrentPage(1); // ✅ Reset page when new search starts
+        }
+    }, [searchValue]); // ✅ Only reset page when searchValue changes
+    
 
     return (
         <>
