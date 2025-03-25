@@ -1,6 +1,5 @@
 "use client"
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Footer from "../components/layouts/Footer/Footer";
 import styles from "./page.module.css"
 import { Montserrat } from "next/font/google"
@@ -64,7 +63,9 @@ const appointmentPage = () => {
         if (filters.experience !== null) queryParams.append("experience", String(filters.experience));
         if (filters.gender !== null) queryParams.append("gender", filters.gender);
 
-        const response = await fetch(`http://localhost:3003/api/v1/doctors?${queryParams}`);
+        const response = await fetch(`http://localhost:3003/api/v1/doctors?${queryParams}`,{
+            credentials: "include",
+        });
         const parsedRes = await response.json();
 
         console.log("API Response:", parsedRes.data);
@@ -80,7 +81,9 @@ const appointmentPage = () => {
         });
 
         try {
-            const response = await fetch(`http://localhost:3003/api/v1/doctors/searchDoctor?${queryParams}`);
+            const response = await fetch(`http://localhost:3003/api/v1/doctors/searchDoctor?${queryParams}`,{
+                credentials: "include",
+            });
             const parsedRes = await response.json();
 
             console.log("Search API Response:", parsedRes.data);
