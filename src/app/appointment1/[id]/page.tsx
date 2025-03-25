@@ -1,4 +1,7 @@
 import styles from "./page.module.css";
+import { useEffect } from "react";
+import { useAuth } from "@/app/context/authContext";
+import { useRouter } from "next/navigation";
 
 type Doctor = {
     doc_id: number;
@@ -39,6 +42,13 @@ export async function getDoctor(id: string) {
 // Page component for doctor profile
 export default async function DoctorProfile({ params }: { params: { id: string } }) {
     const doctor = await getDoctor(params.id);
+    const {isAuthenticated} = useAuth();
+    const router = useRouter();
+    useEffect(() => {
+        if (!isAuthenticated) {
+            router.push("/login");
+        }
+    }, [isAuthenticated]);
 
     if (!doctor) {
         return <p>Doctor not found</p>;

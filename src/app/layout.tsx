@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import styles from "./layout.module.css"
 import type { Viewport } from 'next'
 import Navbar from "./components/layouts/Navbar/Navbar";
-import Footer from "./components/layouts/Footer/Footer";
+import { AuthProvider } from "./context/authContext";
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -21,11 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={styles.html}>
-      <body className={styles.body}>
-        <Navbar />
-        {children}
-      </body>
-    </html>
+    <AuthProvider>
+      <html lang="en" className={styles.html}>
+        <body className={styles.body}>
+          <Navbar />
+          {children}
+        </body>
+      </html>
+    </AuthProvider>
   );
 }

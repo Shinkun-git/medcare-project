@@ -1,5 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
+import { useAuth } from "@/app/context/authContext";
+import { useRouter } from "next/navigation";
 import Footer from "../components/layouts/Footer/Footer";
 import styles from "./page.module.css"
 import { Montserrat } from "next/font/google"
@@ -25,7 +27,9 @@ type doctor = {
     degree: string
 }
 const appointmentPage = () => {
-
+    const {isAuthenticated} = useAuth();
+    const router = useRouter();
+    const [loading, setLoading] = useState(true);
     const [doctors, setDoctors] = useState<doctor[]>([]);
     const [totalDoctors, setTotalDoctors] = useState(0); // Total number of doctors
     const [totalPages, setTotalPages] = useState(1); // Total pages based on filtered results
@@ -33,6 +37,15 @@ const appointmentPage = () => {
     const [filters, setFilters] = useState({ rating: "Show All", experience: null, gender: "Show All" }); // Store selected filters
 
     const [searchValue, setSearchValue] = useState("");
+
+    useEffect(() => {
+        if (!isAuthenticated) {
+            router.push("/login");
+        } else {
+            setLoading(false); // ✅ Allow rendering after authentication check
+        }
+    }, [isAuthenticated, router]);
+
     const onSearch = (searchValue: string) => {
         setSearchValue(searchValue);
     };
@@ -96,6 +109,7 @@ const appointmentPage = () => {
     };
 
     useEffect(() => {
+        if(loading || !isAuthenticated) return;
         console.log("Current Page Changed:", currentPage);
     
         if (searchValue.trim() === "") {
@@ -108,12 +122,17 @@ const appointmentPage = () => {
     }, [currentPage, filters,searchValue]); // ✅ Runs ONLY when currentPage or filters change
     
     useEffect(() => {
+        if(loading || !isAuthenticated) return;
         if (searchValue.trim() !== "") {
             console.log("Search Triggered, Reset Page to 1");
             setCurrentPage(1); // ✅ Reset page when new search starts
         }
     }, [searchValue]); // ✅ Only reset page when searchValue changes
     
+    
+    if (loading) {
+        return <p>Loading...</p>; // ✅ Prevents rendering before authentication check
+    }
 
     return (
         <>

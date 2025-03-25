@@ -1,23 +1,27 @@
+"use client";
 import Link from "next/link";
-import styles from "./NavButtons.module.css"
+import { useAuth } from "@/app/context/authContext";
+import styles from "./NavButtons.module.css";
 
-import { Montserrat } from "next/font/google";
+export default function NavButtons() {
+  const { isAuthenticated, logout } = useAuth();
 
-const MontserratFont = Montserrat({
-    subsets: [],
-    weight: "500"
-});
-
-export default function NavButtons(){
-    return (
-        <section className={`${styles.container} ${MontserratFont.className}`}>
-            <Link href={"/login"}>
+  return (
+    <section className={styles.container}>
+      {!isAuthenticated ? (
+        <>
+          <Link href="/login">
             <button className={styles.loginButton}>Login</button>
-            </Link>
-            <Link href={"/sign-up"}>
+          </Link>
+          <Link href="/sign-up">
             <button className={styles.registerButton}>Register</button>
-            </Link>
-        </section>
-
-    )
+          </Link>
+        </>
+      ) : (
+        <button className={styles.logoutButton} onClick={logout}>
+          Logout
+        </button>
+      )}
+    </section>
+  );
 }

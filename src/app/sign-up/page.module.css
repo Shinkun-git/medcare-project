@@ -77,3 +77,18 @@
 }
 
 
+.alreadyLoggedIn {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.alreadyLoggedIn p {
+    font-size: 18px;
+    color: #1C4A2A;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
