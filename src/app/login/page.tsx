@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation"; // ✅ Fixed import
+import { useRouter,useSearchParams } from "next/navigation"; // ✅ Fixed import
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
@@ -20,7 +20,8 @@ const Page = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(""); // ✅ Handle errors
-
+    const searchParams = useSearchParams(); // ✅ Get query params
+    const redirect = searchParams.get("redirect") || "/landingPage";
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(""); // Clear previous errors
@@ -38,11 +39,7 @@ const Page = () => {
             }
 
             setAuthenticated(true); // ✅ Update authentication state
-            if (document.referrer) {
-                router.back(); // ✅ Go back if there's a referrer
-              } else {
-                router.replace("/landingPage"); // ✅ Otherwise, go to dashboard
-              }
+            router.replace(redirect); // ✅ Redirect to previous page
         } catch (err) {
             setError((err as Error).message);
         }

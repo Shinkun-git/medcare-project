@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 
 interface AuthContextType {
   isAuthenticated: boolean;
+  loading: boolean;
   setAuthenticated: (value: boolean) => void;
 }
 
@@ -10,6 +11,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true); // ✅ Added loading state
 
   // Initial auth check (Runs on first load)
   useEffect(() => {
@@ -27,6 +29,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       } catch (error) {
         console.error("Error checking authentication", error);
         setAuthenticated(false);
+      } finally {
+        setLoading(false); // ✅ Ensure loading is set to false after check
       }
     };
 
@@ -34,7 +38,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setAuthenticated }}>
+    <AuthContext.Provider value={{ isAuthenticated, loading, setAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );

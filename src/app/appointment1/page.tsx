@@ -1,92 +1,95 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import { useAuth } from "@/app/context/authContext";
 import { useRouter } from "next/navigation";
 import Footer from "../components/layouts/Footer/Footer";
-import styles from "./page.module.css"
-import { Montserrat } from "next/font/google"
+import styles from "./page.module.css";
+import { Montserrat } from "next/font/google";
 import DoctorCard from "../components/layouts/DoctorCard/DoctorCard";
 import FilterSection from "../components/UI/FilterSection/FilterSection";
 import PagesFrame from "../components/UI/PagesFrame/PagesFrame";
-import doctorData from "../../../public/doctorData/doctorData.json"
-const imageUrl = doctorData[0].image;
+import doctorData from "../../../public/doctorData/doctorData.json";
 import SearchDoctor from "../components/UI/SearchDoctor/SearchDoctor";
+
 const MontserratFont = Montserrat({
     subsets: [],
     weight: "500"
-})
-type doctor = {
-    doc_id: number,
-    name: string,
-    gender: string,
-    specification: string,
-    experience: number,
-    description: string,
-    location: string,
-    rating: number,
-    degree: string
-}
-const appointmentPage = () => {
-    const {isAuthenticated} = useAuth();
-    const router = useRouter();
-    const [loading, setLoading] = useState(true);
-    const [doctors, setDoctors] = useState<doctor[]>([]);
-    const [totalDoctors, setTotalDoctors] = useState(0); // Total number of doctors
-    const [totalPages, setTotalPages] = useState(1); // Total pages based on filtered results
-    const [currentPage, setCurrentPage] = useState(1);
-    const [filters, setFilters] = useState({ rating: "Show All", experience: null, gender: "Show All" }); // Store selected filters
+});
 
+type Doctor = {
+    doc_id: number;
+    name: string;
+    gender: string;
+    specification: string;
+    experience: number;
+    description: string;
+    location: string;
+    rating: number;
+    degree: string;
+};
+
+const appointmentPage = () => {
+    const { isAuthenticated, loading } = useAuth(); // ✅ Using loading from useAuth()
+    const router = useRouter();
+    
+    const [doctors, setDoctors] = useState<Doctor[]>([]);
+    const [totalDoctors, setTotalDoctors] = useState(0);
+    const [totalPages, setTotalPages] = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [filters, setFilters] = useState({ rating: "Show All", experience: null, gender: "Show All" });
     const [searchValue, setSearchValue] = useState("");
 
+    // Redirect to login if not authenticated
     useEffect(() => {
-        if (!isAuthenticated) {
-            router.push("/login");
-        } else {
-            setLoading(false); // ✅ Allow rendering after authentication check
+        if (!loading && !isAuthenticated) {
+            router.push(`/login?redirect=${encodeURIComponent(window.location.pathname)}`);
         }
-    }, [isAuthenticated, router]);
+    }, [isAuthenticated, loading, router]);
 
+    // Prevent rendering until authentication check is complete
+    if (loading || (!loading && !isAuthenticated)) {
+        return null; // Prevents the brief page flash before redirect
+    }
     const onSearch = (searchValue: string) => {
         setSearchValue(searchValue);
     };
 
     const updateFilter = (key: string, value: string) => {
         let newValue: string | null = value;
-
-        if (key === "experience" && value === "Show All") {
-            newValue = null;
-        }
+        if (key === "experience" && value === "Show All") newValue = null;
 
         setFilters((prevFilters) => ({
             ...prevFilters,
             [key]: newValue,
         }));
-
         setCurrentPage(1);
     };
 
     const fetchFilteredDoctors = async () => {
+        if (loading || !isAuthenticated) return; // ✅ Ensure request runs only after auth check
+
         const queryParams = new URLSearchParams({
             page: currentPage.toString(),
             limit: "6",
         });
 
-        // Only add filters if they are valid
         if (filters.rating !== null) queryParams.append("rating", String(filters.rating));
         if (filters.experience !== null) queryParams.append("experience", String(filters.experience));
         if (filters.gender !== null) queryParams.append("gender", filters.gender);
 
-        const response = await fetch(`http://localhost:3003/api/v1/doctors?${queryParams}`,{
+        const response = await fetch(`http://localhost:3003/api/v1/doctors?${queryParams}`, {
             credentials: "include",
         });
         const parsedRes = await response.json();
 
-        console.log("API Response:", parsedRes.data);
         setDoctors(parsedRes.data.data);
         setTotalDoctors(parsedRes.data.total);
         setTotalPages(parsedRes.data.pages);
     };
+
     const fetchSearchedDoctors = async () => {
+        if (loading || !isAuthenticated) return; // ✅ Prevent unnecessary requests
+
         const queryParams = new URLSearchParams({
             page: currentPage.toString(),
             limit: "6",
@@ -94,12 +97,11 @@ const appointmentPage = () => {
         });
 
         try {
-            const response = await fetch(`http://localhost:3003/api/v1/doctors/searchDoctor?${queryParams}`,{
+            const response = await fetch(`http://localhost:3003/api/v1/doctors/searchDoctor?${queryParams}`, {
                 credentials: "include",
             });
             const parsedRes = await response.json();
 
-            console.log("Search API Response:", parsedRes.data);
             setDoctors(parsedRes.data.data);
             setTotalDoctors(parsedRes.data.total);
             setTotalPages(parsedRes.data.pages);
@@ -109,53 +111,40 @@ const appointmentPage = () => {
     };
 
     useEffect(() => {
-        if(loading || !isAuthenticated) return;
-        console.log("Current Page Changed:", currentPage);
-    
+        if (loading || !isAuthenticated) return;
+
         if (searchValue.trim() === "") {
-            console.log("Filtered Fetch Running...");
             fetchFilteredDoctors();
         } else {
-            console.log("Search Fetch Running...");
             fetchSearchedDoctors();
         }
-    }, [currentPage, filters,searchValue]); // ✅ Runs ONLY when currentPage or filters change
-    
+    }, [currentPage, filters, searchValue, loading, isAuthenticated]);
+
     useEffect(() => {
-        if(loading || !isAuthenticated) return;
-        if (searchValue.trim() !== "") {
-            console.log("Search Triggered, Reset Page to 1");
-            setCurrentPage(1); // ✅ Reset page when new search starts
-        }
-    }, [searchValue]); // ✅ Only reset page when searchValue changes
-    
-    
+        if (loading || !isAuthenticated) return;
+        if (searchValue.trim() !== "") setCurrentPage(1);
+    }, [searchValue]);
+
+    // Show loading until authentication check is complete
     if (loading) {
-        return <p>Loading...</p>; // ✅ Prevents rendering before authentication check
+        return <p>Loading...</p>;
     }
 
     return (
         <>
             <main className={styles.container}>
-                {/* search field */}
                 <section className={`${styles.searchField} ${MontserratFont.className}`}>
-                    <span>
-                        Find a doctor at your own ease
-                    </span>
+                    <span>Find a doctor at your own ease</span>
                     <SearchDoctor onSearch={onSearch} />
                 </section>
 
-                {/* donate section */}
                 <section className={styles.donateSection}>
-                    {/* donate title */}
                     <section className={styles.donateTitle}>
                         <span>{totalDoctors} doctors available</span>
-                        <div>
-                            Book appointments with minimum wait-time & verified doctor details
-                        </div>
+                        <div>Book appointments with minimum wait-time & verified doctor details</div>
                     </section>
+
                     <section className={styles.donateContent}>
-                        {/* aside content */}
                         <div id={styles.donateAside}>
                             <div id={styles.donateAsideTop}>
                                 <span>Filter By:</span>
@@ -182,7 +171,6 @@ const appointmentPage = () => {
                                     onFilterChange={(value) => updateFilter("experience", value)}
                                 />
 
-
                                 <FilterSection
                                     title="Gender"
                                     radioName="gender"
@@ -190,38 +178,34 @@ const appointmentPage = () => {
                                     selectedValue={filters.gender !== null ? filters.gender : "Show All"}
                                     onFilterChange={(value) => updateFilter("gender", value)}
                                 />
-
                             </aside>
                         </div>
 
-                        {/* doctor's content */}
                         <section id={styles.doctorsContent}>
                             {Array.isArray(doctors) && doctors.length > 0 ? (
                                 doctors.map((doc) => (
                                     <DoctorCard key={doc.doc_id} name={doc.name} specialty={doc.specification}
-                                        experience={doc.experience} rating={doc.rating} image={imageUrl} />
+                                        experience={doc.experience} rating={doc.rating} image={doctorData[0].image} />
                                 ))
                             ) : (
                                 <p>No doctors found</p>
                             )}
                         </section>
                     </section>
-                    {/* donate content */}
 
-                    {/* donate footer */}
                     <section className={styles.donateFooter}>
-
-                        <PagesFrame pages={Array.from({ length: totalPages }, (_, index) => (index + 1).toString())}
+                        <PagesFrame
+                            pages={Array.from({ length: totalPages }, (_, index) => (index + 1).toString())}
                             currentPage={currentPage}
                             totalPages={totalPages}
-                            setCurrentPage={setCurrentPage} />
-
+                            setCurrentPage={setCurrentPage}
+                        />
                     </section>
                 </section>
             </main>
             <Footer />
         </>
     );
-}
+};
 
 export default appointmentPage;
