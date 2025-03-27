@@ -1,9 +1,15 @@
 import styles from "./SlotAvailable.module.css"
 
-const SlotAvailable = ({time,shift}:{time:string,shift:string}) => {
+interface SlotAvailableProps {
+    time: string;
+    shift: string;
+    onSlotSelect: (time: string) => void;
+}
+
+const SlotAvailable = ({time,shift,onSlotSelect}:SlotAvailableProps) => {
     return (
-        <button className={styles.slotBtn}>
-            {time}{shift==="Morning"?" AM": " PM"}
+        <button className={styles.slotBtn} onClick={()=>onSlotSelect(time)}>
+            {time.slice(0,time.length-3)}{shift==="Morning"?" AM": " PM"}
         </button>
     );
 }

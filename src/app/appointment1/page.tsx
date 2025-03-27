@@ -10,7 +10,6 @@ import FilterSection from "../components/UI/FilterSection/FilterSection";
 import PagesFrame from "../components/UI/PagesFrame/PagesFrame";
 import doctorData from "../../../public/doctorData/doctorData.json";
 import SearchDoctor from "../components/UI/SearchDoctor/SearchDoctor";
-import Link from "next/link";
 
 const MontserratFont = Montserrat({
     subsets: [],
@@ -78,7 +77,7 @@ const appointmentPage = () => {
         if (filters.experience !== null) queryParams.append("experience", String(filters.experience));
         if (filters.gender !== null) queryParams.append("gender", filters.gender);
 
-        const response = await fetch(`http://localhost:3003/api/v1/doctors?${queryParams}`, {
+        const response = await fetch(`http://localhost:3003/api/v1/doctors/filteredDoctors?${queryParams}`, {
             credentials: "include",
         });
         const parsedRes = await response.json();

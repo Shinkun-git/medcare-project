@@ -73,7 +73,6 @@ const Calendar: React.FC<CalendarProps> = ({ selectedDate, setSelectedDate }) =>
         <button className={styles.scroll_btn} onClick={() => scroll("left")}>{"<"}</button>
         <div className={styles.dates_list} ref={scrollRef}>
           {visibleDates.map((date, index) => {
-            // const formattedDate = date.toISOString().split("T")[0]; // Convert to YYYY-MM-DD format
               return (<button
               key={index}
               className={`${styles.date_button} ${
