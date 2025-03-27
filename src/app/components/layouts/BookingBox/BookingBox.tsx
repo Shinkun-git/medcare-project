@@ -3,17 +3,19 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation"; // Fix import for App Router
 import SlotBox from "../../UI/SlotBox/SlotBox";
 import styles from "./BookingBox.module.css";
-import Image from "next/image";
 import { ParamValue } from "next/dist/server/request/params";
 import { useAuth } from "@/app/context/authContext";
+import Calendar from "@/app/components/UI/Calendar/Calendar";
 
 const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
     const { isAuthenticated } = useAuth();
     const router = useRouter();
     const [doctor, setDoctor] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-    const [activeMode, setActiveMode] = useState("video");
-    const [selectedLocation, setSelectedLocation] = useState<string>("");
+    const [mode, setmode] = useState("video");
+    const [location, setlocation] = useState<string>("");
+    const [selectedDate, setSelectedDate] = useState(new Date());   //before sending convert to sql DATE format
+    // const []
 
     // Redirect if not authenticated
     useEffect(() => {
@@ -32,7 +34,7 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
             const doctorData = await response.json();
             if (doctorData.data) {
                 setDoctor(doctorData.data);
-                setSelectedLocation(doctorData.data.location); // Set default location
+                setlocation(doctorData.data.location); // Set default location
             }
             setLoading(false);
         };
@@ -47,21 +49,21 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
             {/* Schedule Appointment */}
             <section className={styles.scheduleAppointment}>
                 <div className={styles.scheduleHead}>
-                    <span>Schedule Appointment with Dr. {doctor.name}</span>
+                    <span>Schedule Appointment with Dr.{doctor.name}</span>
                     <button>Book Appointment</button>
                 </div>
 
-                {/* Mode Selection */}
+                {/* mode Selection */}
                 <section className={styles.mode}>
                     <button 
-                        className={activeMode === "video" ? styles.activeVideoBtn : styles.videoBtn}
-                        onClick={() => setActiveMode("video")}
+                        className={mode === "video" ? styles.activeVideoBtn : styles.videoBtn}
+                        onClick={() => setmode("video")}
                     >
                         Book Video Consult
                     </button>
                     <button 
-                        className={activeMode === "visit" ? styles.activeVisitBtn : styles.visitBtn}
-                        onClick={() => setActiveMode("visit")}
+                        className={mode === "visit" ? styles.activeVisitBtn : styles.visitBtn}
+                        onClick={() => setmode("visit")}
                     >
                         Book Hospital Visit
                     </button>
@@ -72,8 +74,8 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
                     <select 
                         name="location" 
                         id="location" 
-                        value={selectedLocation} 
-                        onChange={(e) => setSelectedLocation(e.target.value)}
+                        value={location} 
+                        onChange={(e) => setlocation(e.target.value)}
                     >
                         <option value={doctor.location}>{doctor.location}</option>
                     </select>
@@ -81,12 +83,15 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
             </section>
 
             {/* Month Navigation */}
-            <section className={styles.month}>
+            {/* <section className={styles.month}>
                 <Image src={"/left-arrow-circle.svg"} alt={"previous month"} width={25} height={23} />
                 <span>December</span>
                 <Image src={"/right-arrow-circle.svg"} alt={"next month"} width={25} height={23} />
-            </section>
+            </section> */}
+{/*  */}
+<Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
 
+{/*  */}
             {/* Slot Selection */}
             <SlotBox shift="Morning" />
             <SlotBox shift="Afternoon" />
