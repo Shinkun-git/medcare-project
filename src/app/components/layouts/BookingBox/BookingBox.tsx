@@ -15,6 +15,7 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
     const [mode, setmode] = useState("online");
     const [location, setlocation] = useState<string>("");
     const [selectedDate, setSelectedDate] = useState(new Date());
+    const [date, setDate] = useState("")
     const [bookedSlots, setBookedSlots] = useState<string[]>([]);
     const [selectedSlot, setSelectedSlot] = useState<string | null>(null);
     const [isBooking, setIsBooking] = useState(false);
@@ -47,8 +48,8 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
     useEffect(()=>{
         const fetchBookedSlots = async()=>{
             try{
-                const formattedDate = selectedDate?.toISOString().split("T")[0]; // Convert to YYYY-MM-DD format
-                if(!formattedDate) throw new Error('NO date');
+                const formatedDate = selectedDate?.toISOString().split("T")[0]; // Convert to YYYY-MM-DD format
+                if(!formatedDate) throw new Error('NO date');
                 const response = await fetch(`http://localhost:3003/api/v1/slots/bookedSlots`,{
                     credentials:"include",
                     method:"POST",
@@ -57,12 +58,13 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
                     },
                     body: JSON.stringify({
                         doctorId,
-                        input_date: formattedDate,
+                        input_date: formatedDate,
                     }),
                 });
                 if(!response.ok) throw new Error('Fetching booked slots response error');
                 const parsedRes = await response.json();
                 console.log("got booked slots from fetch,",parsedRes.data);
+                setDate(formatedDate);
                 setBookedSlots(parsedRes.data);
             } catch(err){
                 console.log("Fetching error (booked slots) ",err);
@@ -84,9 +86,9 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({
-                        doctorId,
+                        doctorId: doctorId,
                         email: user?.email,
-                        date: selectedDate?.toISOString().split("T")[0],
+                        date: date,
                         time: selectedSlot,
                         mode: mode,
                     }),
@@ -96,6 +98,12 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
     
                 const data = await response.json();
                 console.log("Slot booked successfully:", data);
+                alert(`Request for Slot sent :-
+                    Doctor : ${doctor.name}
+                    Patient : ${user?.name}
+                    Date : ${date}
+                    Time : ${selectedSlot}`);
+                router.push('/landingPage');
             } catch (err) {
                 console.error("Error booking slot:", err);
             }
@@ -154,8 +162,8 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
             <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
 
             {/* Slot Selection */}
-            <SlotBox shift="Morning" bookedSlots={bookedSlots} onSlotSelect={handleSlotSelect}/>
-            <SlotBox shift="Afternoon" bookedSlots={bookedSlots} onSlotSelect={handleSlotSelect}/>
+            <SlotBox shift="Morning" bookedSlots={bookedSlots} onSlotSelect={handleSlotSelect} activeSlot={selectedSlot}/>
+            <SlotBox shift="Afternoon" bookedSlots={bookedSlots} onSlotSelect={handleSlotSelect} activeSlot={selectedSlot}/>
 
             {/* Next Button */}
             <button className={styles.nextBtn} onClick={()=>setIsBooking(true)}>

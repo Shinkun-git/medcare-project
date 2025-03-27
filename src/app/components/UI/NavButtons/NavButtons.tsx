@@ -35,7 +35,7 @@ export default function NavButtons() {
           </Link>
         </>
       ) : (<>
-      <p>{user?.email}</p>
+      <p>{user?.name}</p>
         <button className={styles.logoutButton} onClick={logout}>
           Logout
         </button>

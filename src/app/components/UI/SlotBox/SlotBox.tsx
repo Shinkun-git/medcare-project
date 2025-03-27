@@ -7,6 +7,7 @@ interface SlotBoxProps {
     shift: "Morning" | "Afternoon";
     bookedSlots: string[];
     onSlotSelect: (time: string) => void;
+    activeSlot: string|null;
 }
 
 // Define available slots for each shift
@@ -22,7 +23,7 @@ const convertTo12HourFormat = (time: string): string => {
     return `${formattedHours}:${minutes.toString().padStart(2, "0")} ${period}`;
 };
 
-const SlotBox = ({ shift, bookedSlots, onSlotSelect }: SlotBoxProps) => {
+const SlotBox = ({ shift, bookedSlots, onSlotSelect, activeSlot }: SlotBoxProps) => {
     const shiftSlots = availableSlots[shift] || [];
     const bookedSlotsForShift = bookedSlots.filter(slot => shiftSlots.includes(slot));
     return (
@@ -48,9 +49,9 @@ const SlotBox = ({ shift, bookedSlots, onSlotSelect }: SlotBoxProps) => {
                         const formattedSlot = convertTo12HourFormat(slot); // Convert to 12-hour format
 
                         return bookedSlotsForShift.includes(slot) ? (
-                            <SlotDisabled shift={shift} time={formattedSlot} key={slot} />
+                            <SlotDisabled shift={shift} time={formattedSlot} key={slot}/>
                         ) : (
-                            <SlotAvailable shift={shift} time={formattedSlot} key={slot} onSlotSelect={onSlotSelect} />
+                            <SlotAvailable shift={shift} time={formattedSlot} key={slot} onSlotSelect={onSlotSelect} activeSlot={activeSlot}/>
                         );
                     })}
                 </div>

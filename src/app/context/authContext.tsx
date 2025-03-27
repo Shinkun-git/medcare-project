@@ -62,12 +62,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         console.error("Error checking authentication", error);
         setAuthenticated(false,null);
       } finally {
-        setLoading(false); // ✅ Ensure loading is set to false after check
+        setLoading(false);
       }
     };
-
     checkAuth();
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, user, loading, setAuthenticated,logout }}>
