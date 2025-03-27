@@ -10,6 +10,7 @@ import FilterSection from "../components/UI/FilterSection/FilterSection";
 import PagesFrame from "../components/UI/PagesFrame/PagesFrame";
 import doctorData from "../../../public/doctorData/doctorData.json";
 import SearchDoctor from "../components/UI/SearchDoctor/SearchDoctor";
+import Link from "next/link";
 
 const MontserratFont = Montserrat({
     subsets: [],
@@ -31,7 +32,7 @@ type Doctor = {
 const appointmentPage = () => {
     const { isAuthenticated, loading } = useAuth(); // ✅ Using loading from useAuth()
     const router = useRouter();
-    
+
     const [doctors, setDoctors] = useState<Doctor[]>([]);
     const [totalDoctors, setTotalDoctors] = useState(0);
     const [totalPages, setTotalPages] = useState(1);
@@ -184,8 +185,15 @@ const appointmentPage = () => {
                         <section id={styles.doctorsContent}>
                             {Array.isArray(doctors) && doctors.length > 0 ? (
                                 doctors.map((doc) => (
-                                    <DoctorCard key={doc.doc_id} name={doc.name} specialty={doc.specification}
-                                        experience={doc.experience} rating={doc.rating} image={doctorData[0].image} />
+                                        <DoctorCard
+                                        key={doc.doc_id}
+                                            id={doc.doc_id}  // ✅ Pass doctor ID
+                                            name={doc.name}
+                                            specialty={doc.specification}
+                                            experience={doc.experience}
+                                            rating={doc.rating}
+                                            image={doctorData[0].image}
+                                        />
                                 ))
                             ) : (
                                 <p>No doctors found</p>

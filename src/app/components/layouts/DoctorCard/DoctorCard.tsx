@@ -1,11 +1,22 @@
 import styles from "./DoctorCard.module.css"
 import Image from "next/image";
-const DoctorCard = ({ name, specialty, experience, rating, image }:
-    { name: string, specialty: string, experience: number, rating: number, image: string }
+import { useRouter } from "next/navigation";
+const DoctorCard = ({ id,name, specialty, experience, rating, image }:
+    { id:number,name: string, specialty: string, experience: number, rating: number, image: string }
 ) => {
-    const totalStars = rating;
+    const router = useRouter();
+
+    const handleDoctorClick = () => {
+        router.push(`/appointment1/${id}`);
+    };
+
+    // Navigate to Booking Page
+    const handleBookingClick = (event: React.MouseEvent) => {
+        event.stopPropagation(); // Prevents triggering handleDoctorClick
+        router.push(`/appointment1/${id}/booking`);
+    };
     return (
-        <article className={styles.card}>
+        <article className={styles.card} onClick={handleDoctorClick}>
             <section className={styles.cardDetail}>
 
                 <div className={styles.imageFrame}>
@@ -47,11 +58,11 @@ const DoctorCard = ({ name, specialty, experience, rating, image }:
                     </section>
                 </div>
             </section>
-            <button className={styles.cardButton}>
-                <span className={styles.buttonText}>
-                    Book Appointment
-                </span>
+
+            <button className={styles.cardButton} onClick={handleBookingClick}>
+                <span className={styles.buttonText}>Book Appointment</span>
             </button>
+
         </article>
     );
 }

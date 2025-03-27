@@ -16,11 +16,16 @@ type Doctor = {
 
 // ✅ Use a Server Component with SSR
 export default async function DoctorProfile({ params }: { params: { id: string } }) {
-    // ✅ Get cookies manually
-    const cookieHeader = cookies().toString();
+    if (!params) {
+        return <p>Invalid doctor ID</p>;
+    }
+    const {id} = await params;
 
     try {
-        const response = await fetch(`http://localhost:3003/api/v1/doctors/searchDoctor/${params.id}`, {
+        const cookieStore = await cookies();
+        const cookieHeader = cookieStore.getAll().map(c => `${c.name}=${c.value}`).join("; ");
+
+        const response = await fetch(`http://localhost:3003/api/v1/doctors/searchDoctor/${id}`, {
             headers: {
                 Cookie: cookieHeader, // ✅ Forward the cookie
             },
