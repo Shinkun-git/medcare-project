@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { useRouter,useSearchParams } from "next/navigation"; // ✅ Fixed import
+import { useRouter, useSearchParams } from "next/navigation"; // ✅ Fixed import
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
@@ -22,6 +22,7 @@ const Page = () => {
     const [error, setError] = useState(""); // ✅ Handle errors
     const searchParams = useSearchParams(); // ✅ Get query params
     const redirect = searchParams.get("redirect") || "/landingPage";
+
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setError(""); // Clear previous errors
@@ -37,14 +38,18 @@ const Page = () => {
             if (!response.ok) {
                 throw new Error("Invalid credentials, please try again.");
             }
-            const {data : userData} = await response.json();
-            setAuthenticated(true,userData); // ✅ Update authentication state
+            const { data: userData } = await response.json();
+            setAuthenticated(true, userData); // ✅ Update authentication state
             router.replace(redirect); // ✅ Redirect to previous page
         } catch (err) {
             setError((err as Error).message);
         }
     };
 
+    const handleGoogleLogin = () => {
+        window.location.href = "http://localhost:3003/api/v1/auth/google";
+    }
+    
     const handleReset = () => {
         setEmail("");
         setPassword("");
@@ -72,8 +77,8 @@ const Page = () => {
                 {isAuthenticated ? (
                     <div className={styles.alreadyLoggedIn}>
                         <p>You are already logged in.</p>
-                        <SearchDBTN text="Go Back" bgColor="#1C4A2A" 
-                        onClick={() => document.referrer? router.back(): router.replace("/landingPage")} />
+                        <SearchDBTN text="Go Back" bgColor="#1C4A2A"
+                            onClick={() => document.referrer ? router.back() : router.replace("/landingPage")} />
                     </div>
                 ) : (
                     <form className={styles.searchDetails2} onSubmit={handleLogin}>
@@ -87,7 +92,7 @@ const Page = () => {
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                         />
-                        
+
                         {/* Password Input */}
                         <InputField
                             inputLabel="Password"
@@ -105,6 +110,12 @@ const Page = () => {
                         {/* Buttons */}
                         <SearchDBTN text="Login" bgColor="#1C4A2A" type="submit" />
                         <SearchDBTN text="Reset" bgColor="#C6B09A" type="button" onClick={handleReset} />
+                        <SearchDBTN
+                            text="Login with Google"
+                            bgColor="#4285F4" // Google Blue
+                            type="button"
+                            onClick={handleGoogleLogin}
+                        />
 
                         <div className={`${styles.forgot} ${MontserratFont.className}`}>
                             <a href="">Forgot Password?</a>
