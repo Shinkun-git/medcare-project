@@ -10,12 +10,12 @@ const MontserratFont = Montserrat({
 type SearchDoctorProps = {
     onSearch: (searchValue: string) => void;
 }
-const SearchDoctor:React.FC<SearchDoctorProps> = ({onSearch}) => {
+const SearchDoctor = ({onSearch}:SearchDoctorProps) => {
     const [searchValue, setSearchValue] = useState("");
     
-    useEffect(() => {
+    useEffect(() => {       //fetch on each key press in search field
         onSearch(searchValue);
-    }, [searchValue, onSearch]);
+    }, [searchValue]);
 
     const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         console.log(`searchHandler ran : ${e.target.value}`);
