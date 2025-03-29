@@ -4,25 +4,7 @@ import { useAuth } from "@/app/context/authContext";
 import styles from "./NavButtons.module.css";
 
 export default function NavButtons() {
-  const { isAuthenticated,setAuthenticated,logout,user} = useAuth();
-  // const logout = async () => {
-  //   try {
-  //     const res = await fetch("http://localhost:3003/api/v1/users/logout", {
-  //       method: "POST",
-  //       credentials: "include",
-  //     });
-
-  //     if (res.ok) {
-  //       setAuthenticated(false);
-  //       window.location.reload();
-  //     } else {
-  //       console.error("Error logging out");
-  //     }
-  //   }
-  //   catch (error) {
-  //     console.error("Error logging out", error);
-  //   }
-  // };
+  const { isAuthenticated,logout,user} = useAuth();
   return (
     <section className={styles.container}>
       {!isAuthenticated ? (

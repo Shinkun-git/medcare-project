@@ -38,6 +38,7 @@ const Page = () => {
             if (!response.ok) {
                 throw new Error("Invalid credentials, please try again.");
             }
+            alert("Login successful! Redirecting...");
             const { data: userData } = await response.json();
             setAuthenticated(true, userData); // ✅ Update authentication state
             router.replace(redirect); // ✅ Redirect to previous page

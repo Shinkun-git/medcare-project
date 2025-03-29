@@ -47,24 +47,27 @@ const SignUpPage = () => {
         credentials: "include",
       });
 
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.message || "Signup failed");
+      if (!response.ok) throw new Error("Signup request failed");
 
-      setAuthenticated(true);
+      const { data: userData } = await response.json();
+
+      setAuthenticated(true, userData);
       alert("Signup successful! Redirecting...");
-      if(document.referrer){
+      if (document.referrer) {
         router.back();
-      }else{
+      } else {
         router.push("/landingPage");
       }
-    } catch (err: any) {
-      console.error("Error caught in handleSubmit:", err);
-      setError(err.message);
+    } catch (err) {
+      setError((err as Error).message);
     } finally {
       setLoading(false);
     }
   };
 
+  const handleGoogleLogin = () => {
+    window.location.href = "http://localhost:3003/api/v1/auth/google";
+  }
   return (
     <main className={styles.container}>
       <Image
@@ -86,8 +89,8 @@ const SignUpPage = () => {
         {isAuthenticated ? (
           <div className={styles.alreadyLoggedIn}>
             <p>You are already logged in.</p>
-            <SearchDBTN text="Go Back" bgColor="#1C4A2A" 
-            onClick={() => document.referrer? router.back():router.replace("/landingPage")} />
+            <SearchDBTN text="Go Back" bgColor="#1C4A2A"
+              onClick={() => document.referrer ? router.back() : router.replace("/landingPage")} />
           </div>
         ) : (
           <form onSubmit={handleSubmit} className={styles.searchDetails2}>
@@ -121,6 +124,12 @@ const SignUpPage = () => {
 
             <SearchDBTN text={loading ? "Submitting..." : "Submit"} bgColor="#1C4A2A" type="submit" />
             <SearchDBTN text="Reset" bgColor="#C6B09A" type="reset" onClick={() => setFormData({ name: "", email: "", password: "" })} />
+            <SearchDBTN
+              text="Login with Google"
+              bgColor="#4285F4" // Google Blue
+              type="button"
+              onClick={handleGoogleLogin}
+            />
           </form>
         )}
 

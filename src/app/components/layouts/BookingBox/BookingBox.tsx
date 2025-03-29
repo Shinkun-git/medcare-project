@@ -48,7 +48,7 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
     useEffect(()=>{
         const fetchBookedSlots = async()=>{
             try{
-                const formatedDate = selectedDate?.toISOString().split("T")[0]; // Convert to YYYY-MM-DD format
+                const formatedDate = selectedDate?.toLocaleDateString("en-CA"); // Convert to YYYY-MM-DD format
                 if(!formatedDate) throw new Error('NO date');
                 const response = await fetch(`http://localhost:3003/api/v1/slots/bookedSlots`,{
                     credentials:"include",

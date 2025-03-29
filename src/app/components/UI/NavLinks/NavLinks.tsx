@@ -11,13 +11,13 @@ export default function NavLinks() {
             <Link href="/landingPage" className={pathname === "/landingPage" ? styles.currentPageLink : styles.defaultLink}>
                 Home
             </Link>
-            <Link href="/appointment" className={pathname === "/appointment" ? styles.currentPageLink : styles.defaultLink}>
+            <Link href="/appointment1" className={pathname === "/appointment" ? styles.currentPageLink : styles.defaultLink}>
                 Appointments
             </Link>
-            <Link href="/appointment1" className={pathname === "/blog" ? styles.currentPageLink : styles.defaultLink}>
+            <Link href="/Blog" className={pathname === "/blog" ? styles.currentPageLink : styles.defaultLink}>
                 Health Blog
             </Link>
-            <Link href="/booking" className={pathname === "/reviews" ? styles.currentPageLink : styles.defaultLink}>
+            <Link href="/Reviews" className={pathname === "/reviews" ? styles.currentPageLink : styles.defaultLink}>
                 Reviews
             </Link>
         </section>
