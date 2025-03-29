@@ -43,9 +43,10 @@
     }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
     .container {
         flex-direction: column;
         gap: 1.5em;
+        /* background-color: #8C8C8C; */
     }
 }

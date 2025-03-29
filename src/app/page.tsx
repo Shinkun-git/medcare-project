@@ -10,6 +10,9 @@ const MontserratFont = Montserrat({
 
 export default function LandingPage() {
     return (
+        // <div style={{width:"100%",height:"88vh",zIndex:0}}>
+        //     main page
+        // </div>
         <main className={styles.main}>
             <section className={styles.section1}>
                 <section className={`${styles.titleBox} ${MontserratFont.className}`}>

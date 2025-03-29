@@ -1,8 +1,8 @@
-.container{
-    z-index: 3;
-    /* position: sticky;
+.container {
+    z-index: 1000;
+    position: sticky;
     top: 0;
-    left: 0; */
+    left: 0;
     padding: 0.5em 1em;
     display: flex;
     justify-content: flex-start;
@@ -11,11 +11,11 @@
     width: 100%;
     background-color: white;
     max-width: 100vw;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
     gap: 4vw;
 }
 
-.HeadLink{
+.HeadLink {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -29,36 +29,42 @@
     .container {
         gap: 3vw;
     }
+
     .HeadLink {
         gap: 2.5vw;
     }
 }
 
 @media screen and (max-width: 950px) {
-    .HeadLink{
-        gap:2vw;
+    .HeadLink {
+        gap: 2vw;
     }
 }
 
 @media screen and (max-width: 890px) {
-    .container{
-        gap:0;
+    .container {
+        gap: 0;
         padding: 0.5em;
     }
-    .HeadLink{
+
+    .HeadLink {
         gap: 0;
     }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 768px) {
     .container {
         flex-direction: column;
-        gap: 0;
+        justify-content: flex-start;
+        align-items: center;
     }
+
     .HeadLink {
         width: 100%;
         flex-direction: column;
-        gap:1em;
-        margin-bottom: 1em;
+        gap: 1em;
+        background-color: #8c8c8c91;
+        border-top-left-radius: 0.75em;
+        border-top-right-radius: 0.75em;
     }
 }
