@@ -1,3 +1,4 @@
+import AddReview from "@/app/components/layouts/AddReview/AddReview";
 import styles from "./page.module.css";
 import { cookies } from "next/headers"; // ✅ Import cookies from Next.js
 
@@ -88,6 +89,10 @@ export default async function DoctorProfile({ params }: { params: { id: string }
                 <a href={`/appointment1/${doctor.doc_id}/booking`} className={styles.bookButton}>
                     Book Appointment
                 </a>
+                    
+                {/* add review component */}
+                <AddReview doctorId={parseInt(id)}/>
+
 
                 {/* Render Reviews if available */}
                 {reviews.length > 0 ? (
