@@ -14,12 +14,19 @@ type Doctor = {
     availability: Record<string, string[]>;
 };
 
+type Review = {
+    review_id:number,
+    user_email: string;
+    rating: number;
+    review: string;
+};
+
 // ✅ Use a Server Component with SSR
 export default async function DoctorProfile({ params }: { params: { id: string } }) {
     if (!params) {
         return <p>Invalid doctor ID</p>;
     }
-    const {id} = await params;
+    const { id } = await params;
 
     try {
         const cookieStore = await cookies();
@@ -38,6 +45,20 @@ export default async function DoctorProfile({ params }: { params: { id: string }
         }
 
         const { data: doctor } = await response.json();
+
+        const reviewResponse = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/reviews/all/${id}`, {
+            headers: {
+                Cookie: cookieHeader, // ✅ Forward the cookie
+            },
+            credentials: "include",
+            cache: "no-store", // ✅ Ensures fresh data (SSR)
+        });
+
+        let reviews: Review[] = [];
+        if (reviewResponse.ok) {
+            const { data } = await reviewResponse.json();
+            reviews = data;
+        }
 
         return (
             <div className={styles.profileContainer}>
@@ -67,6 +88,23 @@ export default async function DoctorProfile({ params }: { params: { id: string }
                 <a href={`/appointment1/${doctor.doc_id}/booking`} className={styles.bookButton}>
                     Book Appointment
                 </a>
+
+                {/* Render Reviews if available */}
+                {reviews.length > 0 ? (
+                    <div className={styles.reviewsSection}>
+                        <h2>Patient Reviews</h2>
+                        {reviews.map((review, index) => (
+                            <div key={index} className={styles.reviewCard}>
+                                <p><strong>{review.review_id}</strong></p>
+                                <p><strong>{review.user_email}</strong></p>
+                                <p>⭐ {review.rating}/5</p>
+                                <p>{review.review}</p>
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <p>No reviews available.</p>
+                )}
             </div>
         );
     } catch (error) {
