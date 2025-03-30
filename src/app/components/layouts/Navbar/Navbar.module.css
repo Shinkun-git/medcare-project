@@ -25,6 +25,22 @@
     min-width: 0;
 }
 
+.toggleInput {
+    display: none;
+}
+
+.menuBtn, .closeBtn {
+    display: none;
+    cursor: pointer;
+}
+
+.linkContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 @media screen and (max-width: 1200px) {
     .container {
         gap: 3vw;
@@ -52,20 +68,53 @@
     }
 }
 
-@media screen and (max-width: 768px) {
-    .container {
+@media screen and (max-width: 500px) {
+    .menuBtn {
+        display: block;
+        position: fixed;
+        top: 1em;
+        right: 1em;
+        z-index: 100;
+    }
+
+    .closeBtn {
+        display: block;
+        position: absolute;
+        left: 1em;
+        top: 1em;
+        z-index: 100;
+    }
+
+    .linkContainer {
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
+        position: fixed;
+        top: 0;
+        right: -70%;
+        width: 70%;
+        height: 100vh;
+        background-color: #252725;
+        padding: 4em 1em 1em;
+        box-sizing: border-box;
+        box-shadow: -5px 0 5px rgba(0,0,0,0.35);
+        z-index: 99;
+        transition: right 0.3s ease-in-out;
     }
 
     .HeadLink {
-        width: 100%;
         flex-direction: column;
-        gap: 1em;
-        background-color: #8c8c8c91;
-        border-top-left-radius: 0.75em;
-        border-top-right-radius: 0.75em;
-        display:none;
+        gap: 2em;
+        width: 100%;
+        align-items: center;
+    }
+
+    .toggleInput:checked ~ .linkContainer {
+        right: 0;
+        opacity: 0.95;
+    }
+
+    .toggleInput:checked ~ .menuBtn {
+        display: none;
     }
 }

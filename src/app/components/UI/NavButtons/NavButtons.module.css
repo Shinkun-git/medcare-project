@@ -1,7 +1,9 @@
 .container {
     display: flex;
     align-items: center;
-    gap: 2vw;
+    gap: 1em;
+    flex-shrink: 0;
+    margin-left: auto;
 }
 
 .container button {
@@ -14,6 +16,8 @@
     text-align: center;
     font-style: inherit;
     font-family: inherit;
+    white-space: nowrap;
+    transition: all 0.3s ease;
 }
 
 .loginButton {
@@ -59,8 +63,42 @@
         padding: 0.75em 1.5em;
     }
 }
+@media screen and (max-width:670px) {
+    .container button {
+        padding: 0.75em 1em;
+    }
+}
+@media screen and (max-width:600px) {
+    .container button {
+        padding: 0.75em 0.5em;
+        font-size: 0.85em;
+    }
+}
+@media screen and (max-width:500px) {
+    .container {
+        flex-direction: column;
+        width: 100%;
+        gap: 1.5em;
+        margin: 2em 0;
+    }
 
-@media screen and (max-width:768px){
+    .container button {
+        width: 100%;
+        padding: 1em;
+        font-size: 1.1em;
+        border-radius: 0.75em;
+    }
+
+    .loginButton {
+        border-width: 2px;
+    }
+
+    .registerButton {
+        background-color: #1C4A2A;
+    }
+}
+
+/* @media screen and (max-width:768px){
     .container{
         flex-direction: column;
         background-color: #8c8c8c91;
@@ -68,5 +106,12 @@
         border-bottom-right-radius: 0.75em;
         width: 100%;
         display:none;
+    }
+} */
+
+@media screen and (max-width:768px) {
+    .container button {
+        padding: 0.6em 1.5em;
+        font-size: 0.95em;
     }
 }
