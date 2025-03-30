@@ -103,7 +103,7 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
                     Patient : ${user?.name}
                     Date : ${date}
                     Time : ${selectedSlot}`);
-                router.push('/landingPage');
+                router.push('/');
             } catch (err) {
                 console.error("Error booking slot:", err);
             }
