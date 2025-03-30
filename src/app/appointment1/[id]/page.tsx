@@ -1,6 +1,6 @@
 import AddReview from "@/app/components/layouts/AddReview/AddReview";
 import styles from "./page.module.css";
-import { cookies } from "next/headers"; // ✅ Import cookies from Next.js
+import { cookies } from "next/headers";
 
 type Doctor = {
     doc_id: number;
@@ -16,13 +16,12 @@ type Doctor = {
 };
 
 type Review = {
-    review_id:number,
+    review_id: number;
     user_email: string;
     rating: number;
     review: string;
 };
 
-// ✅ Use a Server Component with SSR
 export default async function DoctorProfile({ params }: { params: { id: string } }) {
     if (!params) {
         return <p>Invalid doctor ID</p>;
@@ -35,10 +34,10 @@ export default async function DoctorProfile({ params }: { params: { id: string }
 
         const response = await fetch(`http://localhost:3003/api/v1/doctors/searchDoctor/${id}`, {
             headers: {
-                Cookie: cookieHeader, // ✅ Forward the cookie
+                Cookie: cookieHeader,
             },
             credentials: "include",
-            cache: "no-store", // ✅ Ensures fresh data (SSR)
+            cache: "no-store",
         });
 
         if (!response.ok) {
@@ -49,10 +48,10 @@ export default async function DoctorProfile({ params }: { params: { id: string }
 
         const reviewResponse = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/reviews/all/${id}`, {
             headers: {
-                Cookie: cookieHeader, // ✅ Forward the cookie
+                Cookie: cookieHeader,
             },
             credentials: "include",
-            cache: "no-store", // ✅ Ensures fresh data (SSR)
+            cache: "no-store",
         });
 
         let reviews: Review[] = [];
@@ -66,13 +65,16 @@ export default async function DoctorProfile({ params }: { params: { id: string }
                 <h1 className={styles.name}>{doctor.name}</h1>
                 <p className={styles.specification}>{doctor.specification}</p>
                 <p className={styles.description}>{doctor.description}</p>
-                <p><strong>Experience:</strong> {doctor.experience} years</p>
-                <p><strong>Location:</strong> {doctor.location}</p>
-                <p><strong>Rating:</strong> ⭐ {doctor.rating}/5</p>
-                <p><strong>Degree:</strong> {doctor.degree}</p>
+
+                <div className={styles.infoGrid}>
+                    <div className={styles.infoItem}><strong>Experience:</strong> {doctor.experience} years</div>
+                    <div className={styles.infoItem}><strong>Location:</strong> {doctor.location}</div>
+                    <div className={styles.infoItem}><strong>Rating:</strong> ⭐ {doctor.rating}/5</div>
+                    <div className={styles.infoItem}><strong>Degree:</strong> {doctor.degree}</div>
+                </div>
 
                 <h2>Availability</h2>
-                <table>
+                <table className={styles.table}>
                     <thead>
                         <tr><th>Day</th><th>Time Slots</th></tr>
                     </thead>
@@ -89,12 +91,9 @@ export default async function DoctorProfile({ params }: { params: { id: string }
                 <a href={`/appointment1/${doctor.doc_id}/booking`} className={styles.bookButton}>
                     Book Appointment
                 </a>
-                    
-                {/* add review component */}
-                <AddReview doctorId={parseInt(id)}/>
 
+                <AddReview doctorId={parseInt(id)} />
 
-                {/* Render Reviews if available */}
                 {reviews.length > 0 ? (
                     <div className={styles.reviewsSection}>
                         <h2>Patient Reviews</h2>
