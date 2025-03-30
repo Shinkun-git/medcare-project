@@ -25,18 +25,19 @@
 .title {
     margin-top: 3em;
     /* position: absolute; */
+    width: 90%;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     align-items: flex-start;
     gap: 1em;
     height: fit-content;
-    width: fit-content;
+    /* width: 100%; */
     /* top: 126px; */
 }
 
 .titleHead {
-    width: 10em;
+    /* width: 10em; */
     font-family: Montserrat;
     font-weight: 500;
     font-size: 4em;
@@ -47,7 +48,7 @@
 }
 
 .titleContent {
-    width: 28em;
+    /* width: 28em; */
     font-family: Montserrat;
     font-weight: 500;
     font-size: 1.15em;
