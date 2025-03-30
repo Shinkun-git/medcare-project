@@ -30,13 +30,17 @@
     align-items: center;
 }
 
-.scheduleHead>span {
+.scheduleHead>p {
     font-family: Montserrat;
     font-weight: 400;
     font-size: 1.5em;
     line-height: 100%;
     letter-spacing: 0%;
     color: #221E20;
+    margin: 0;
+}
+.scheduleHead span{
+    white-space: nowrap;
 }
 
 .scheduleHead>button {
@@ -137,7 +141,6 @@
 }
 
 .locationDrop::after {
-    content: "▼"; /* Unicode for down arrow */
     font-size: 0.8rem;
     position: absolute;
     right: 10px;
@@ -181,4 +184,40 @@
     border-radius: 0.5em;
     padding: 1em 0em;
     cursor: pointer;
+}
+
+@media(max-width:1090px){
+    .scheduleHead{
+        flex-direction: column-reverse;
+        gap:1em;
+    }
+    .scheduleHead > button{
+        width: 100%;
+    }
+}
+@media(max-width:1000px){
+    .container{
+        width: 95%;
+        padding: 2em 0.5em .5em;
+    }
+}
+@media(max-width: 768px){
+    .container{
+        width: 85%;
+        padding: 2em 0.5em 2em;
+    }
+    .scheduleHead{
+        flex-direction: row;
+    }
+    .scheduleHead>button{
+        width: initial;
+    }
+}
+@media(max-width: 425px){
+    .scheduleHead{
+        flex-direction: column-reverse;
+    }
+    .scheduleHead > button{
+        width: 100%;
+    }
 }

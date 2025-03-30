@@ -55,7 +55,35 @@
     display: flex;
     flex-flow: row wrap;
     gap: 0.5em 0.8em;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-content: space-between;
     pointer-events: auto !important;
+}
+
+@media screen and (max-width:1360px){
+    .SlotContent{
+        padding: 1.5em 2em;
+    }
+}
+@media screen and (max-width:1300px){
+    .SlotContent{
+        padding: 1.5em 1em;
+    }
+}
+@media screen and (max-width:1215px){
+    .SlotContent{
+        padding: 1.5em 0.5em;
+    }
+    
+}
+@media screen and (max-width:1170px){
+    .SlotTimings{
+        gap: 0.5em 0.5em;
+    }
+}
+
+@media(max-width: 550px){
+    .SlotTimings{
+        gap: 0.25em 0.25em;
+    }
 }

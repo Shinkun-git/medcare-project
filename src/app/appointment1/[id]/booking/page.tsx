@@ -38,7 +38,7 @@ const BookingPage = () => {
                 </section>
 
                 <section className={styles.section2}>
-                    <Image src={"/bookBG-crop.png"} alt={"doctor examining patient"} fill style={{ objectFit: "cover" }} />
+                    <Image src={"/bookBG-crop.png"} alt={"doctor examining patient"} fill className={styles.backgroundImage} />
                     <div className={styles.bookBox}>
                         <BookingBox doctorId={id} />
                     </div>

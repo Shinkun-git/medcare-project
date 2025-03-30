@@ -126,7 +126,7 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
             {/* Schedule Appointment */}
             <section className={styles.scheduleAppointment}>
                 <div className={styles.scheduleHead}>
-                    <span>Schedule Appointment with Dr.{doctor.name}</span>
+                    <p>Schedule Appointment with <span>{doctor.name}</span></p>
                     <button>Book Appointment</button>
                 </div>
 
