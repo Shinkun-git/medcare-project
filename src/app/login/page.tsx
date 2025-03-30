@@ -21,7 +21,7 @@ const Page = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(""); // ✅ Handle errors
     const searchParams = useSearchParams(); // ✅ Get query params
-    const redirect = searchParams.get("redirect") || "/landingPage";
+    const redirect = searchParams.get("redirect") || "/";
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -48,7 +48,7 @@ const Page = () => {
     };
 
     const handleGoogleLogin = () => {
-        window.location.href = "http://localhost:3003/api/v1/auth/google";
+        window.location.href = `http://localhost:3003/api/v1/auth/google?redirect=${redirect}`;
     }
     
     const handleReset = () => {
