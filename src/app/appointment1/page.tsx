@@ -155,15 +155,15 @@ const AppointmentPage = () => {
 
                                 <section id={styles.doctorsContent}>
                                     {Array.isArray(doctors) && doctors.length > 0 ? (
-                                        doctors.map((doc) => (
+                                        doctors.map((doctor) => (
                                             <DoctorCard
-                                                key={doc.doc_id}
-                                                id={doc.doc_id}
-                                                name={doc.name}
-                                                specialty={doc.specification}
-                                                experience={doc.experience}
-                                                rating={doc.rating}
-                                                image={doctorData[0].image}
+                                                key={doctor.doc_id}
+                                                id={doctor.doc_id}
+                                                name={doctor.name}
+                                                specialty={doctor.specification}
+                                                experience={doctor.experience}
+                                                rating={doctor.rating}
+                                                image={doctor.image_url}
                                             />
                                         ))
                                     ) : (

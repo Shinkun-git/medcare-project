@@ -117,7 +117,14 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
         console.log("Selected Slot:", time);
     };
     
-
+    const handleBooking = () => {
+        if (!selectedSlot) {
+            alert("Please select a time slot before proceeding.");
+            return;
+        }
+        setIsBooking(true);
+    };
+    
     if (loading) return <p>Loading doctor details...</p>;
     if (!doctor) return <p>Doctor not found</p>;
 
@@ -127,7 +134,7 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
             <section className={styles.scheduleAppointment}>
                 <div className={styles.scheduleHead}>
                     <p>Schedule Appointment with <span>{doctor.name}</span></p>
-                    <button>Book Appointment</button>
+                    <button onClick={handleBooking} disabled={!selectedSlot}>Book Appointment</button>
                 </div>
 
                 {/* mode Selection */}
@@ -166,7 +173,7 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
             <SlotBox shift="Afternoon" bookedSlots={bookedSlots} onSlotSelect={handleSlotSelect} activeSlot={selectedSlot}/>
 
             {/* Next Button */}
-            <button className={styles.nextBtn} onClick={()=>setIsBooking(true)}>
+            <button className={styles.nextBtn} onClick={handleBooking} disabled={!selectedSlot}>
                 Next
             </button>
         </main>
