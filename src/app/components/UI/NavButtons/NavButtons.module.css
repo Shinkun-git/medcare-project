@@ -67,5 +67,6 @@
         border-bottom-left-radius: 0.75em;
         border-bottom-right-radius: 0.75em;
         width: 100%;
+        display:none;
     }
 }

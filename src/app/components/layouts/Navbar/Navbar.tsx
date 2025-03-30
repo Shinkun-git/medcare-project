@@ -13,11 +13,11 @@ const MontserratFont = Montserrat({
 export default function Navbar() {
     return (
         <nav className={`${styles.container} ${MontserratFont.className}`}>
-            <div className={styles.HeadLink}>
-                <NavHead />
-                <NavLinks />
-            </div>
-            <NavButtons />
+                <div className={styles.HeadLink}>
+                    <NavHead />
+                    <NavLinks />
+                </div>
+                <NavButtons />
         </nav>
     )
 } 

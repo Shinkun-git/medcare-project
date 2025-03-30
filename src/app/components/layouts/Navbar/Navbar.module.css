@@ -66,5 +66,6 @@
         background-color: #8c8c8c91;
         border-top-left-radius: 0.75em;
         border-top-right-radius: 0.75em;
+        display:none;
     }
 }

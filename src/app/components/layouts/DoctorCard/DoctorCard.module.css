@@ -78,7 +78,7 @@
     font-weight: 500;
     font-size: 1em;
     line-height: 180%;
-    word-break:keep-all;
+    word-break: keep-all;
     white-space: nowrap;
     /* letter-spacing: -1%; */
     vertical-align: middle;
@@ -134,7 +134,7 @@
     background: none;
 }
 
-.buttonText{
+.buttonText {
     font-family: Montserrat;
     font-weight: 500;
     font-size: 1.2em;
@@ -143,3 +143,12 @@
     vertical-align: middle;
     color: #0E2515;
 }
+
+
+/* @media(max-width:925px) {
+    .card {
+        width: 12em;
+        height: 25em;
+        padding: 2.5em 1.65em;
+    }
+} */
