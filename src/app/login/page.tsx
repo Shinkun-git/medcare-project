@@ -117,10 +117,6 @@ const Page = () => {
                             type="button"
                             onClick={handleGoogleLogin}
                         />
-
-                        <div className={`${styles.forgot} ${MontserratFont.className}`}>
-                            <a href="">Forgot Password?</a>
-                        </div>
                     </form>
                 )}
             </section>
