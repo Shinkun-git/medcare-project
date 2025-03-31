@@ -8,7 +8,7 @@ import { Montserrat } from "next/font/google";
 import DoctorCard from "../components/layouts/DoctorCard/DoctorCard";
 import FilterSection from "../components/UI/FilterSection/FilterSection";
 import PagesFrame from "../components/UI/PagesFrame/PagesFrame";
-import doctorData from "../../../public/doctorData/doctorData.json";
+// import doctorData from "../../../public/doctorData/doctorData.json";
 import SearchDoctor from "../components/UI/SearchDoctor/SearchDoctor";
 
 const MontserratFont = Montserrat({ subsets: [], weight: "500" });
