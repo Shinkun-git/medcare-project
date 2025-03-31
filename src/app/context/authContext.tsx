@@ -1,6 +1,6 @@
 "use client";
 import { createContext, useContext, useEffect, useState } from "react";
-
+import { useRouter } from "next/navigation";
 interface User {
   email: string;
   name?:string;
@@ -17,6 +17,7 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
   const [isAuthenticated, setAuthenticatedState] = useState(false);
   const [loading, setLoading] = useState(true); // ✅ Added loading state
   const [user, setUser] = useState<User | null>(null);
@@ -35,6 +36,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       if (res.ok) {
         setAuthenticated(false, null); // Reset authentication & user
+        router.push("/"); 
       } else {
         console.error("Logout failed");
       }
