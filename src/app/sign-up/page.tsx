@@ -38,7 +38,7 @@ const SignUpPage = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch("http://localhost:3003/api/v1/users/register", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/users/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,7 +56,7 @@ const SignUpPage = () => {
       if (document.referrer) {
         router.back();
       } else {
-        router.push("/landingPage");
+        router.push("/");
       }
     } catch (err) {
       setError((err as Error).message);
@@ -66,7 +66,7 @@ const SignUpPage = () => {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = "http://localhost:3003/api/v1/auth/google";
+    window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/auth/google`;
   }
   return (
     <main className={styles.container}>
@@ -90,7 +90,7 @@ const SignUpPage = () => {
           <div className={styles.alreadyLoggedIn}>
             <p>You are already logged in.</p>
             <SearchDBTN text="Go Back" bgColor="#1C4A2A"
-              onClick={() => document.referrer ? router.back() : router.replace("/landingPage")} />
+              onClick={() => document.referrer ? router.back() : router.replace("/")} />
           </div>
         ) : (
           <form onSubmit={handleSubmit} className={styles.searchDetails2}>

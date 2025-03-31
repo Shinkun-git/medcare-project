@@ -31,7 +31,7 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
     useEffect(() => {
         const fetchDoctor = async () => {
             setLoading(true);
-            const response = await fetch(`http://localhost:3003/api/v1/doctors/searchDoctor/${doctorId}`,{
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/doctors/searchDoctor/${doctorId}`,{
                 credentials: "include",
             })
             const doctorData = await response.json();
@@ -50,7 +50,7 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
             try{
                 const formatedDate = selectedDate?.toLocaleDateString("en-CA"); // Convert to YYYY-MM-DD format
                 if(!formatedDate) throw new Error('NO date');
-                const response = await fetch(`http://localhost:3003/api/v1/slots/bookedSlots`,{
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/slots/bookedSlots`,{
                     credentials:"include",
                     method:"POST",
                     headers:{
@@ -79,7 +79,7 @@ const BookingBox = ({ doctorId }: { doctorId: ParamValue }) => {
             try {
                 if (!isBooking) return;
                 console.log("Logged in user : -",user?.email);
-                const response = await fetch("http://localhost:3003/api/v1/slots/book", {
+                const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/slots/book`, {
                     method: "POST",
                     credentials: "include",
                     headers: {

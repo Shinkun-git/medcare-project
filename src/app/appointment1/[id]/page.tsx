@@ -32,7 +32,7 @@ export default async function DoctorProfile({ params }: { params: { id: string }
         const cookieStore = await cookies();
         const cookieHeader = cookieStore.getAll().map(c => `${c.name}=${c.value}`).join("; ");
 
-        const response = await fetch(`http://localhost:3003/api/v1/doctors/searchDoctor/${id}`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/doctors/searchDoctor/${id}`, {
             headers: {
                 Cookie: cookieHeader,
             },

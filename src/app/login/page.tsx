@@ -28,7 +28,7 @@ const Page = () => {
         setError(""); // Clear previous errors
 
         try {
-            const response = await fetch("http://localhost:3003/api/v1/users/login", {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/users/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include", // ✅ Important for sending cookies
@@ -48,7 +48,7 @@ const Page = () => {
     };
 
     const handleGoogleLogin = () => {
-        window.location.href = `http://localhost:3003/api/v1/auth/google?redirect=${redirect}`;
+        window.location.href = `${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/auth/google?redirect=${redirect}`;
     }
     
     const handleReset = () => {
