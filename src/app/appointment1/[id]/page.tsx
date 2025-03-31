@@ -44,7 +44,8 @@ export default async function DoctorProfile({ params }: { params: { id: string }
             return <p>Doctor not found</p>;
         }
 
-        const { data: doctor } = await response.json();
+        const { data } = await response.json();
+        const doctor: Doctor = data as Doctor; // Explicitly asserting the type
 
         const reviewResponse = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_BASE_URL}/api/v1/reviews/all/${id}`, {
             headers: {
@@ -99,7 +100,6 @@ export default async function DoctorProfile({ params }: { params: { id: string }
                         <h2>Patient Reviews</h2>
                         {reviews.map((review, index) => (
                             <div key={index} className={styles.reviewCard}>
-                                <p><strong>{review.review_id}</strong></p>
                                 <p><strong>{review.user_email}</strong></p>
                                 <p>⭐ {review.rating}/5</p>
                                 <p>{review.review}</p>

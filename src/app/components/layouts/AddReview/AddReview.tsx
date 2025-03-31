@@ -47,7 +47,7 @@ export default function AddReview({ doctorId }: { doctorId: number }) {
                 <label>
                     Rating:
                     <select value={rating} onChange={(e) => setRating(Number(e.target.value))}>
-                        {[1, 2, 3, 4, 5].map((num) => (
+                        {[0,1, 2, 3, 4, 5].map((num) => (
                             <option key={num} value={num}>{num} ⭐</option>
                         ))}
                     </select>

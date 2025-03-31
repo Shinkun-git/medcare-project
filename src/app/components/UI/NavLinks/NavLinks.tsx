@@ -17,7 +17,7 @@ export default function NavLinks() {
             <Link href="/Blog" className={pathname === "/Blog" ? styles.currentPageLink : styles.defaultLink}>
                 Health Blog
             </Link>
-            <Link href="/Reviews" className={pathname === "/Reviews" ? styles.currentPageLink : styles.defaultLink}>
+            <Link href="/reviews" className={pathname === "/reviews" ? styles.currentPageLink : styles.defaultLink}>
                 Reviews
             </Link>
         </section>

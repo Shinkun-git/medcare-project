@@ -28,7 +28,7 @@ export default function LandingPage() {
                 </section>
                 <section className={`${styles.searchField} ${MontserratFont.className}`}>
                     <div className={styles.searchDetails}>
-                        <Link href={"/login"} >
+                        <Link href={"/appointment1"} >
                         <button>Get Started</button>
                         </Link>
                     </div>
