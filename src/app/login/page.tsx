@@ -79,7 +79,7 @@ const Page = () => {
                     <div className={styles.alreadyLoggedIn}>
                         <p>You are already logged in.</p>
                         <SearchDBTN text="Go Back" bgColor="#1C4A2A"
-                            onClick={() => document.referrer ? router.back() : router.replace("/landingPage")} />
+                            onClick={() => document.referrer ? router.back() : router.replace("/")} />
                     </div>
                 ) : (
                     <form className={styles.searchDetails2} onSubmit={handleLogin}>

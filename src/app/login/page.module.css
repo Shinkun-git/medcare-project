@@ -16,7 +16,8 @@
 }
 
 .searchField {
-    width: 35em;
+    width: 70%;
+    height: 80%;
     box-sizing: border-box;
     padding: 2em 1.5em;
     display: flex;
@@ -103,4 +104,11 @@
     color: #1C4A2A;
     font-weight: bold;
     margin-bottom: 15px;
+}
+
+@media screen and (max-width:425px){
+    .searchField{
+        width:90%;
+        padding: 1.5em 1em;
+    }
 }
